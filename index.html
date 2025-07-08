@@ -178,23 +178,14 @@
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="header-blur sticky top-0 z-50 border-b border-slate-800">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3">
-                <img src="https://www.thiings.co/_next/image?url=https%3A%2F%2Flftz25oez4aqbxpq.public.blob.vercel-storage.com%2Fimage-iHFK2I60hobeZy9iO4mGxPM4ob1YYs.png&w=1920&q=75" alt="Logo de Brayam Chavarro" class="h-8 w-auto" onerror="this.style.display='none'">
-                <div class="hidden md:flex items-center">
-                    <span class="text-xl font-bold text-white">Brayam Chavarro</span>
-                    <span id="header-typewriter" class="ml-2 text-xl font-normal text-slate-400"></span>
-                </div>
-            </a>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="#proyectos" class="text-slate-300 hover:text-white">Proyectos</a>
-                <a href="#habilidades" class="text-slate-300 hover:text-white">Habilidades</a>
-                <a href="#contacto" class="text-slate-300 hover:text-white">Contacto</a>
-            </nav>
-            <a href="#proyectos" class="border border-sky-500 text-white font-semibold px-5 py-2 rounded-md hover:bg-sky-500/10 transition-colors">Ver Proyectos</a>
-        </div>
+    <!-- Nuevo Menú Principal estilo Ultra -->
+    <header class="fixed top-6 left-1/2 z-50 -translate-x-1/2 w-fit px-6 py-2 bg-[#18181b]/80 backdrop-blur-md rounded-full border border-[#232329] shadow-lg flex items-center gap-2 md:gap-6">
+        <nav class="flex items-center gap-2 md:gap-6 text-base font-medium">
+            <a href="#proyectos" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Proyectos</a>
+            <a href="#habilidades" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Habilidades</a>
+            <a href="#contacto" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Contacto</a>
+        </nav>
+        <a href="#sobre-mi" class="ml-2 px-4 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold border border-white/20 transition-colors shadow">Sobre mí</a>
     </header>
 
     <main>
@@ -231,86 +222,119 @@
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-bold text-white">Proyectos Destacados</h2>
                 </div>
-
-                <div x-data="{ activeSlide: 1, totalSlides: 3 }" class="max-w-5xl mx-auto">
-                    <!-- Slides Container -->
-                    <div class="relative min-h-[480px]">
-                        <!-- Slide 1 -->
-                        <div x-show="activeSlide === 1" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" class="absolute inset-0 w-full h-full">
-                            <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 grid md:grid-cols-2 gap-8 items-center">
-                                <div class="text-left">
-                                    <h3 class="text-3xl font-bold text-white mb-4">Plataforma E-commerce</h3>
-                                    <p class="text-lg text-slate-300 mb-6">Desarrollo de una tienda en línea completa con carrito de compras, pasarela de pagos y panel de administración de productos.</p>
-                                    <div>
-                                        <p class="font-semibold text-white">Tecnologías Usadas:</p>
-                                        <p class="text-slate-400">React, Node.js, Express, MongoDB</p>
+                <div class="relative max-w-6xl mx-auto">
+                    <!-- Slider Wrapper -->
+                    <div id="projects-slider" class="overflow-hidden">
+                        <div id="projects-track" class="flex transition-transform duration-700 ease-in-out">
+                            <!-- Proyecto 1 -->
+                            <div class="min-w-full flex flex-col md:flex-row items-center gap-8 md:gap-16 p-0 md:p-0">
+                                <div class="relative w-full md:w-[70%] h-[500px] md:h-[700px] group">
+                                    <img src="impulso.png" alt="Impulso-IA" class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 will-change-transform" id="parallax-impulso">
+                                </div>
+                                <div class="flex-1 text-left px-6 md:px-0">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">Impulso-IA</h3>
+                                    <p class="text-slate-300 mb-4">Desarrollo de una plataforma de inteligencia artificial para potenciar procesos empresariales y automatizar tareas clave.</p>
+                                    <div class="mb-2">
+                                        <span class="font-semibold text-white">Tecnologías:</span>
+                                        <span class="text-slate-400">Python, FastAPI, React, Docker, PostgreSQL</span>
                                     </div>
                                 </div>
-                                <img src="https://placehold.co/600x450/1d4ed8/FFFFFF?text=Proyecto+E-commerce" class="rounded-lg w-full h-full object-cover" alt="Proyecto de E-commerce">
                             </div>
-                        </div>
-                        <!-- Slide 2 -->
-                        <div x-show="activeSlide === 2" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" class="absolute inset-0 w-full h-full">
-                            <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 grid md:grid-cols-2 gap-8 items-center">
-                                <div class="text-left">
-                                    <h3 class="text-3xl font-bold text-white mb-4">App Móvil de Tareas</h3>
-                                    <p class="text-lg text-slate-300 mb-6">Aplicación para iOS y Android que permite a los usuarios gestionar sus tareas diarias, establecer recordatorios y colaborar en listas.</p>
-                                    <div>
-                                        <p class="font-semibold text-white">Tecnologías Usadas:</p>
-                                        <p class="text-slate-400">React Native, Firebase, Expo</p>
+                            <!-- Proyecto 2 -->
+                            <div class="min-w-full flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16 p-0 md:p-0">
+                                <img src="https://placehold.co/600x450/be185d/FFFFFF?text=App+de+Tareas" alt="App de Tareas" class="w-full md:w-[60%] h-[400px] md:h-[600px] object-cover rounded-2xl shadow-2xl">
+                                <div class="flex-1 text-left px-6 md:px-0">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">App Móvil de Tareas</h3>
+                                    <p class="text-slate-300 mb-4">Aplicación para iOS y Android que permite a los usuarios gestionar sus tareas diarias, establecer recordatorios y colaborar en listas.</p>
+                                    <div class="mb-2">
+                                        <span class="font-semibold text-white">Tecnologías:</span>
+                                        <span class="text-slate-400">React Native, Firebase, Expo</span>
                                     </div>
                                 </div>
-                                <img src="https://placehold.co/600x450/be185d/FFFFFF?text=App+de+Tareas" class="rounded-lg w-full h-full object-cover" alt="Proyecto de App de Tareas">
                             </div>
-                        </div>
-                        <!-- Slide 3 -->
-                        <div x-show="activeSlide === 3" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-95" class="absolute inset-0 w-full h-full">
-                            <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 grid md:grid-cols-2 gap-8 items-center">
-                                <div class="text-left">
-                                    <h3 class="text-3xl font-bold text-white mb-4">Visualizador de Algoritmos</h3>
-                                    <p class="text-lg text-slate-300 mb-6">Herramienta web interactiva para visualizar el funcionamiento de algoritmos de ordenamiento y búsqueda en tiempo real.</p>
-                                    <div>
-                                        <p class="font-semibold text-white">Tecnologías Usadas:</p>
-                                        <p class="text-slate-400">JavaScript (ES6+), HTML5 Canvas, CSS3</p>
+                            <!-- Proyecto 3 -->
+                            <div class="min-w-full flex flex-col md:flex-row items-center gap-8 md:gap-16 p-0 md:p-0">
+                                <img src="https://placehold.co/600x450/059669/FFFFFF?text=Visualizador+de+Algoritmos" alt="Visualizador de Algoritmos" class="w-full md:w-[60%] h-[400px] md:h-[600px] object-cover rounded-2xl shadow-2xl">
+                                <div class="flex-1 text-left px-6 md:px-0">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">Visualizador de Algoritmos</h3>
+                                    <p class="text-slate-300 mb-4">Herramienta web interactiva para visualizar el funcionamiento de algoritmos de ordenamiento y búsqueda en tiempo real.</p>
+                                    <div class="mb-2">
+                                        <span class="font-semibold text-white">Tecnologías:</span>
+                                        <span class="text-slate-400">JavaScript (ES6+), HTML5 Canvas, CSS3</span>
                                     </div>
                                 </div>
-                                <img src="https://placehold.co/600x450/059669/FFFFFF?text=Visualizador+de+Algoritmos" class="rounded-lg w-full h-full object-cover" alt="Proyecto de Visualizador de Algoritmos">
                             </div>
                         </div>
                     </div>
-
-                    <!-- Navigation -->
-                    <div class="flex justify-center items-center mt-8 gap-4">
-                        <button @click="activeSlide = activeSlide === 1 ? totalSlides : activeSlide - 1" class="p-2 rounded-full border border-slate-700 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                    <!-- Flechitas -->
+                    <div class="flex justify-center items-center gap-6 mt-8">
+                        <button id="prev-project" class="p-3 rounded-full border border-slate-700 bg-[#232329] hover:bg-slate-800 text-slate-400 hover:text-white transition-colors focus:outline-none">
+                            <i class="fa-solid fa-chevron-left"></i>
                         </button>
-                        <button @click="activeSlide = activeSlide === totalSlides ? 1 : activeSlide + 1" class="p-2 rounded-full border border-slate-700 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                        <button id="next-project" class="p-3 rounded-full border border-slate-700 bg-[#232329] hover:bg-slate-800 text-slate-400 hover:text-white transition-colors focus:outline-none">
+                            <i class="fa-solid fa-chevron-right"></i>
                         </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section id="habilidades" class="py-20">
+        <!-- Sección combinada Sobre mí + Habilidades en Bento Grid -->
+        <section id="sobre-mi-habilidades" class="py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">Mis Habilidades Técnicas</h2>
-                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto">Estas son algunas de las tecnologías con las que he trabajado y desarrollado proyectos.</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Sobre mí &amp; Habilidades</h2>
+                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto">Conoce quién soy y las tecnologías con las que trabajo.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-slate-900 p-8 rounded-xl border border-slate-800 transition-all duration-300 card-border-glow">
-                        <h3 class="text-xl font-bold text-white mb-2">Frontend</h3>
-                        <p class="text-slate-400">HTML5, CSS3, JavaScript (ES6+), TypeScript, React, Next.js, Tailwind CSS, Figma.</p>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <!-- Sobre mí (tarjeta grande) -->
+                    <div class="relative group rounded-2xl p-8 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-slate-900/90 border border-slate-700/40 shadow-xl md:col-span-2 row-span-2 flex flex-col justify-center min-h-[340px]">
+                        <h3 class="text-2xl font-bold text-white mb-4">Sobre mí</h3>
+                        <div class="w-full bg-[#18181b] rounded-xl shadow-inner p-4 font-mono text-base md:text-lg text-green-400 relative overflow-hidden min-h-[80px]">
+                            <pre id="console-typewriter-bento" class="whitespace-pre-wrap min-h-[80px]">$ <span class="animate-cursor">|</span></pre>
+                        </div>
                     </div>
-                    <div class="bg-slate-900 p-8 rounded-xl border border-slate-800 transition-all duration-300 card-border-glow">
-                        <h3 class="text-xl font-bold text-white mb-2">Backend</h3>
-                        <p class="text-slate-400">Node.js, Express, Python, Django, Java, SQL (PostgreSQL, MySQL), NoSQL (MongoDB).</p>
+                    <!-- Frontend -->
+                    <div class="relative group rounded-2xl p-8 bg-gradient-to-br from-sky-900/60 via-sky-800/40 to-slate-900/80 border border-sky-700/30 shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-center">
+                        <div class="absolute -top-8 -right-8 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
+                            <i class="fa-solid fa-code fa-4x text-sky-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 relative z-10">Frontend</h3>
+                        <ul class="text-slate-300 relative z-10 space-y-1">
+                            <li><i class="fa-brands fa-html5 text-orange-400 mr-2"></i>HTML5</li>
+                            <li><i class="fa-brands fa-css3-alt text-blue-400 mr-2"></i>CSS3</li>
+                            <li><i class="fa-brands fa-js text-yellow-300 mr-2"></i>JavaScript (ES6+)</li>
+                            <li><i class="fa-brands fa-react text-cyan-400 mr-2"></i>React, Next.js</li>
+                            <li><i class="fa-solid fa-paintbrush text-pink-400 mr-2"></i>Tailwind CSS, Figma</li>
+                        </ul>
                     </div>
-                    <div class="bg-slate-900 p-8 rounded-xl border border-slate-800 transition-all duration-300 card-border-glow">
-                        <h3 class="text-xl font-bold text-white mb-2">Herramientas y Otros</h3>
-                        <p class="text-slate-400">Git, GitHub, Docker, CI/CD, Metodologías Ágiles (Scrum), REST APIs, GraphQL.</p>
+                    <!-- Backend -->
+                    <div class="relative group rounded-2xl p-8 bg-gradient-to-br from-emerald-900/60 via-emerald-800/40 to-slate-900/80 border border-emerald-700/30 shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-center">
+                        <div class="absolute -top-8 -right-8 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
+                            <i class="fa-solid fa-database fa-4x text-emerald-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 relative z-10">Backend</h3>
+                        <ul class="text-slate-300 relative z-10 space-y-1">
+                            <li><i class="fa-brands fa-node-js text-green-400 mr-2"></i>Node.js, Express</li>
+                            <li><i class="fa-brands fa-python text-yellow-200 mr-2"></i>Python, Django</li>
+                            <li><i class="fa-solid fa-database text-blue-300 mr-2"></i>SQL (PostgreSQL, MySQL)</li>
+                            <li><i class="fa-solid fa-database text-green-300 mr-2"></i>NoSQL (MongoDB)</li>
+                            <li><i class="fa-brands fa-java text-red-400 mr-2"></i>Java</li>
+                        </ul>
+                    </div>
+                    <!-- Herramientas y Otros -->
+                    <div class="relative group rounded-2xl p-8 bg-gradient-to-br from-fuchsia-900/60 via-fuchsia-800/40 to-slate-900/80 border border-fuchsia-700/30 shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-center">
+                        <div class="absolute -top-8 -right-8 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
+                            <i class="fa-solid fa-toolbox fa-4x text-fuchsia-400"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 relative z-10">Herramientas y Otros</h3>
+                        <ul class="text-slate-300 relative z-10 space-y-1">
+                            <li><i class="fa-brands fa-git-alt text-orange-400 mr-2"></i>Git, GitHub</li>
+                            <li><i class="fa-brands fa-docker text-blue-400 mr-2"></i>Docker</li>
+                            <li><i class="fa-solid fa-rocket text-sky-400 mr-2"></i>CI/CD</li>
+                            <li><i class="fa-solid fa-users text-green-400 mr-2"></i>Scrum</li>
+                            <li><i class="fa-solid fa-link text-purple-400 mr-2"></i>REST APIs, GraphQL</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -319,42 +343,57 @@
         <!-- Contact Form Section -->
         <section id="contacto" class="py-20">
             <div class="container mx-auto px-6">
-                <div class="max-w-3xl mx-auto">
-                    <div class="bg-slate-900 border border-slate-800 rounded-xl p-8 md:p-12 shadow-2xl shadow-sky-900/10">
-                        <div class="text-left mb-10">
-                            <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Hablemos de tu Próxima Idea</h2>
-                            <p class="text-slate-400">Si tienes un proyecto en mente, una oportunidad de colaboración o simplemente quieres saludar, no dudes en escribirme.</p>
-                        </div>
-                        <form action="#" method="POST">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Nombre</label>
-                                    <input type="text" name="name" id="name" class="form-input block w-full rounded-md shadow-sm py-3 px-4">
-                                </div>
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
-                                    <input type="email" name="email" id="email" class="form-input block w-full rounded-md shadow-sm py-3 px-4">
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <label for="company" class="block text-sm font-medium text-slate-300 mb-2">Empresa (Opcional)</label>
-                                    <input type="text" name="company" id="company" class="form-input block w-full rounded-md shadow-sm py-3 px-4">
-                                </div>
-                                <div>
-                                    <label for="website" class="block text-sm font-medium text-slate-300 mb-2">Sitio Web (Opcional)</label>
-                                    <input type="url" name="website" id="website" placeholder="https://" class="form-input block w-full rounded-md shadow-sm py-3 px-4">
-                                </div>
-                            </div>
-                            <div class="mb-6">
-                                <label for="message" class="block text-sm font-medium text-slate-300 mb-2">Mensaje</label>
-                                <textarea name="message" id="message" rows="4" class="form-input block w-full rounded-md shadow-sm py-3 px-4" placeholder="Hola Brayam, me gustaría..."></textarea>
+                <div class="max-w-lg mx-auto">
+                    <div class="bg-[#18181b] border border-slate-800 rounded-2xl shadow-2xl p-8 md:p-10">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-slate-700 rounded-full p-2">
+                                <i class="fa-solid fa-envelope text-white text-2xl"></i>
                             </div>
                             <div>
-                                <button type="submit" class="particle-btn animated-border-btn w-full border border-sky-500 text-white font-bold py-3 px-6 rounded-md text-lg hover:bg-sky-500/10 transition-colors inline-flex items-center justify-center gap-2">
-                                    Enviar Mensaje
-                                    <i class="fa-regular fa-envelope"></i>
-                                </button>
+                                <h2 class="text-2xl font-bold text-white">Contáctame</h2>
+                                <p class="text-slate-400 text-sm">¿Tienes un proyecto o quieres saludar? Completa el formulario.</p>
+                            </div>
+                        </div>
+                        <form action="#" method="POST" class="space-y-5">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-slate-300 mb-1">Nombre</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="fa-regular fa-user"></i></span>
+                                    <input type="text" name="name" id="name" class="pl-10 pr-4 py-3 w-full rounded-lg bg-[#232329] border border-slate-700 text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 outline-none transition" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-300 mb-1">Email</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="fa-regular fa-envelope"></i></span>
+                                    <input type="email" name="email" id="email" class="pl-10 pr-4 py-3 w-full rounded-lg bg-[#232329] border border-slate-700 text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 outline-none transition" required>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-1/2">
+                                    <label for="company" class="block text-sm font-medium text-slate-300 mb-1">Empresa (Opcional)</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="fa-solid fa-building"></i></span>
+                                        <input type="text" name="company" id="company" class="pl-10 pr-4 py-3 w-full rounded-lg bg-[#232329] border border-slate-700 text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 outline-none transition">
+                                    </div>
+                                </div>
+                                <div class="w-1/2">
+                                    <label for="website" class="block text-sm font-medium text-slate-300 mb-1">Sitio Web (Opcional)</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><i class="fa-solid fa-globe"></i></span>
+                                        <input type="url" name="website" id="website" placeholder="https://" class="pl-10 pr-4 py-3 w-full rounded-lg bg-[#232329] border border-slate-700 text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 outline-none transition">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-slate-300 mb-1">Mensaje</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-4 text-slate-400"><i class="fa-regular fa-comment"></i></span>
+                                    <textarea name="message" id="message" rows="4" class="pl-10 pr-4 py-3 w-full rounded-lg bg-[#232329] border border-slate-700 text-slate-100 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 outline-none transition resize-none" placeholder="Hola Brayam, me gustaría..."></textarea>
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <button type="submit" class="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg transition-colors shadow focus:outline-none focus:ring-2 focus:ring-blue-500/40">Enviar Mensaje</button>
                             </div>
                         </form>
                     </div>
@@ -571,7 +610,85 @@
             runHeaderTypewriter();
         }
 
+        // --- Animación consola para Sobre mí en Bento Grid ---
+        const consoleTypewriterBento = document.getElementById('console-typewriter-bento');
+        if (consoleTypewriterBento) {
+            const lines = [
+                'Hola, soy Brayam Chavarro.',
+                'Estudiante de Ingeniería de Software.',
+                'Apasionado por la tecnología, la innovación y el desarrollo de soluciones que impactan positivamente.',
+                'Me especializo en desarrollo web y de aplicaciones, combinando creatividad y lógica.',
+                'Siempre busco aprender nuevas tecnologías y enfrentar desafíos para crecer profesionalmente.'
+            ];
+            const typingSpeed = 38;
+            const linePause = 900;
+            let currentLine = 0;
+            let currentChar = 0;
+            let output = '';
+            let typing;
+
+            function typeLine() {
+                if (currentLine < lines.length) {
+                    if (currentChar < lines[currentLine].length) {
+                        output += lines[currentLine][currentChar];
+                        consoleTypewriterBento.innerHTML = `$ ${output}<span class="animate-cursor">|</span>`;
+                        currentChar++;
+                        typing = setTimeout(typeLine, typingSpeed);
+                    } else {
+                        output += '\n$ ';
+                        currentChar = 0;
+                        currentLine++;
+                        typing = setTimeout(typeLine, linePause);
+                    }
+                } else {
+                    // Remove cursor after finish
+                    consoleTypewriterBento.innerHTML = `$ ${output}`;
+                }
+            }
+            setTimeout(typeLine, 600);
+        }
+
+        // Slider de proyectos con animación lateral
+        const track = document.getElementById('projects-track');
+        const prevBtn = document.getElementById('prev-project');
+        const nextBtn = document.getElementById('next-project');
+        const totalProjects = 3;
+        let current = 0;
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${current * 100}%)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            current = (current + 1) % totalProjects;
+            updateSlider();
+        });
+        prevBtn.addEventListener('click', () => {
+            current = (current - 1 + totalProjects) % totalProjects;
+            updateSlider();
+        });
+
+        // Parallax y animación llamativa para la imagen de Impulso-IA
+        const parallaxImg = document.getElementById('parallax-impulso');
+        if (parallaxImg) {
+            parallaxImg.parentElement.addEventListener('mousemove', (e) => {
+                const rect = parallaxImg.parentElement.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                const scale = 1.12 + Math.abs(x * y) * 0.08;
+                const rotateX = y * 12;
+                const rotateY = x * 12;
+                parallaxImg.style.transform = `scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                parallaxImg.style.boxShadow = `${-x*30}px ${-y*30}px 60px 0 rgba(56,189,248,0.15)`;
+            });
+            parallaxImg.parentElement.addEventListener('mouseleave', () => {
+                parallaxImg.style.transform = '';
+                parallaxImg.style.boxShadow = '';
+            });
+        }
+
     </script>
 </body>
 </html>
+
 
