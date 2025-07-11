@@ -399,9 +399,247 @@
             color: #38bdf8;
             font-size: 12px;
         }
+
+        /* Project swap animations */
+        .project-swapping {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-style: preserve-3d;
+            will-change: transform, opacity, filter;
+        }
+
+        .project-swap-out {
+            transform: scale(0.85) rotateY(8deg) translateZ(-50px);
+            filter: blur(3px);
+            opacity: 0.6;
+        }
+
+        .project-swap-in {
+            transform: scale(1.08) translateZ(20px);
+            filter: blur(0px) brightness(1.1);
+            opacity: 1;
+        }
+
+        .project-swap-final {
+            transform: scale(1) translateZ(0px);
+            filter: blur(0px) brightness(1);
+        }
+
+        /* Ensure consistent sizing for main project position */
+        .main-project-size {
+            min-height: 450px !important;
+            max-height: 580px !important;
+        }
+
+        .secondary-project-size {
+            min-height: 200px !important;
+            max-height: 300px !important;
+        }
+
+        /* Improved grid layout consistency */
+        .project-grid-main {
+            grid-column: span 4 / span 4;
+            grid-row: span 2 / span 2;
+        }
+
+        .project-grid-secondary {
+            grid-column: span 2 / span 2;
+            grid-row: span 1 / span 1;
+        }
+
+        /* Enhanced content scaling for consistent layouts */
+        .main-project-size .relative {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 2rem !important;
+        }
+
+        .secondary-project-size .relative {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 1.5rem !important;
+        }
+
+        /* Improved text scaling */
+        .main-project-size h3 {
+            font-size: 1.5rem !important;
+            line-height: 2rem !important;
+        }
+
+        .secondary-project-size h3 {
+            font-size: 1.125rem !important;
+            line-height: 1.75rem !important;
+        }
+
+        .main-project-size p {
+            font-size: 1.125rem !important;
+            line-height: 1.75rem !important;
+        }
+
+        .secondary-project-size p {
+            font-size: 0.875rem !important;
+            line-height: 1.25rem !important;
+        }
+
+        /* Smooth transitions for all project elements */
+        .project-card * {
+            transition: all 0.3s ease;
+        }
+
+        /* Full page sections */
+        .full-page-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Navegación vertical con flechas */
+        .page-navigation {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(30, 30, 37, 0.9);
+            border: 2px solid rgba(56, 189, 248, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-arrow:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: rgba(56, 189, 248, 0.8);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .nav-arrow i {
+            color: #38bdf8;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-arrow:hover i {
+            color: #ffffff;
+        }
+
+        .nav-arrow.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Indicadores de sección */
+        .section-indicators {
+            position: fixed;
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 99;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .section-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .section-dot.active {
+            background: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+        }
+
+        .section-dot::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section-dot:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hide navigation on small screens */
+        @media (max-width: 768px) {
+            .page-navigation,
+            .section-indicators {
+                display: none;
+            }
+        }
+
+        /* Active menu item styles */
+        .nav-item-active {
+            color: #38bdf8 !important;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 0.375rem;
+        }
+
+        .nav-button-active {
+            background: rgba(56, 189, 248, 0.2) !important;
+            border-color: rgba(56, 189, 248, 0.5) !important;
+            color: #38bdf8 !important;
+        }
     </style>
 </head>
 <body class="dark-grid-bg">
+
+    <!-- Page Navigation -->
+    <div class="page-navigation">
+        <div class="nav-arrow" id="nav-up" onclick="navigateSection('up')">
+            <i class="fa-solid fa-chevron-up"></i>
+        </div>
+        <div class="nav-arrow" id="nav-down" onclick="navigateSection('down')">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <!-- Section Indicators -->
+    <div class="section-indicators">
+        <div class="section-dot active" data-tooltip="Inicio" data-section="hero" onclick="goToSection('hero', event)"></div>
+        <div class="section-dot" data-tooltip="Proyectos" data-section="proyectos" onclick="goToSection('proyectos', event)"></div>
+        <div class="section-dot" data-tooltip="Dashboard" data-section="sobre-mi-habilidades" onclick="goToSection('sobre-mi-habilidades', event)"></div>
+        <div class="section-dot" data-tooltip="Contacto" data-section="contacto" onclick="goToSection('contacto', event)"></div>
+    </div>
 
     <!-- Floating Social Media Sidebar -->
     <div class="social-sidebar">
@@ -435,24 +673,28 @@
     <!-- Nuevo Menú Principal estilo Ultra -->
     <header class="fixed top-10 left-1/2 z-50 -translate-x-1/2 w-fit px-6 py-2 bg-[#18181b]/80 backdrop-blur-md rounded-full border border-[#232329] shadow-lg flex items-center gap-2 md:gap-6">
         <nav class="flex items-center gap-2 md:gap-6 text-base font-medium">
-            <a href="#proyectos" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Proyectos</a>
-            <a href="#sobre-mi-habilidades" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Dashboard</a>
-            <a href="#contacto" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Contacto</a>
+            <a id="nav-hero" href="#hero" onclick="goToSection('hero', event)" class="text-slate-200 hover:text-white transition-colors px-3 py-1 cursor-pointer nav-item-active">Inicio</a>
+            <a id="nav-proyectos" href="#proyectos" onclick="goToSection('proyectos', event)" class="text-slate-200 hover:text-white transition-colors px-3 py-1 cursor-pointer">Proyectos</a>
+            <a id="nav-sobre-mi-habilidades" href="#sobre-mi-habilidades" onclick="goToSection('sobre-mi-habilidades', event)" class="text-slate-200 hover:text-white transition-colors px-3 py-1 cursor-pointer">Sobre mí</a>
+            <a id="nav-contacto" href="#contacto" onclick="goToSection('contacto', event)" class="text-slate-200 hover:text-white transition-colors px-3 py-1 cursor-pointer">Contacto</a>
         </nav>
-        <a href="#sobre-mi-habilidades" class="ml-2 px-4 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold border border-white/20 transition-colors shadow">Sobre mí</a>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-section animated-gradient py-24 md:py-32">
+        <section id="hero" class="hero-section animated-gradient py-24 md:py-32 full-page-section">
             <canvas id="beams-background-canvas"></canvas>
+            <!-- Logo en esquina superior izquierda -->
+            <div class="absolute -top-8 left-8 z-20">
+                <img src="logo-bc.png" alt="Brayam Chavarro Logo" class="w-36 h-36 md:w-56 md:h-56 object-contain opacity-90 hover:opacity-100 transition-opacity duration-300">
+            </div>
             <div class="relative z-10 container mx-auto px-6 text-center">
-                <div class="h-24 md:h-32 flex items-center justify-center">
-                    <h1 id="typewriter-h1" class="text-4xl md:text-7xl font-extrabold text-white leading-tight">
+                <div class="h-28 md:h-40 flex items-center justify-center">
+                    <h1 id="typewriter-h1" class="text-5xl md:text-8xl font-extrabold text-white leading-tight">
                         <span id="typewriter-text" class="border-r-4 border-white animate-cursor pr-1"></span>
                     </h1>
                 </div>
-                <p class="max-w-3xl mx-auto text-lg md:text-xl text-slate-300 mb-10 mt-6">
+                <p class="max-w-3xl mx-auto text-xl md:text-2xl text-slate-300 mb-10 mt-6">
                     Soy Brayam Chavarro, estudiante de Ingeniería de Software apasionado por crear soluciones tecnológicas innovadoras y eficientes que resuelvan problemas del mundo real.
                 </p>
                 <div class="flex justify-center items-center gap-4">
@@ -471,7 +713,7 @@
         </section>
 
         <!-- Bento Grid Projects Section -->
-        <section id="proyectos" class="py-20">
+        <section id="proyectos" class="py-20 full-page-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Proyectos Destacados</h2>
@@ -483,13 +725,13 @@
                     <div class="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[minmax(200px,auto)]">
                         
                         <!-- Proyecto Principal - Impulso IA -->
-                        <div class="md:col-span-4 md:row-span-2 group relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-2xl border border-blue-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500 cursor-pointer project-card" data-project="impulso-ia">
+                        <div id="main-project" class="project-grid-main main-project-size group relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-2xl border border-blue-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500 cursor-pointer project-card" data-project="impulso-ia" onclick="swapWithMainProject(this, event)">
                             <div class="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             <div class="relative z-10 p-8 h-full flex flex-col">
                                 <div class="flex items-center gap-3 mb-4">
                                     <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
                                         <i class="fa-solid fa-robot text-blue-400 text-xl"></i>
-                                    </div>
+                                </div>
                                     <div>
                                         <h3 class="text-2xl font-bold text-white">Impulso-IA</h3>
                                         <span class="text-blue-400 text-sm">Inteligencia Artificial</span>
@@ -503,88 +745,63 @@
                                     <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">FastAPI</span>
                                     <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">React</span>
                                     <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Docker</span>
-                                </div>
+                            </div>
                                 <div class="flex items-center gap-4">
                                     <div class="flex items-center gap-2 text-green-400">
                                         <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                                         <span class="text-sm">En Producción</span>
                                     </div>
                                     <div class="flex gap-2">
-                                        <a href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors">
+                                        <a href="https://github.com/brayamchavarro/impulso-ai" target="_blank" class="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors">
                                             <i class="fa-brands fa-github text-white text-sm"></i>
                                         </a>
-                                        <a href="#" target="_blank" class="w-8 h-8 rounded-lg bg-blue-600 hover:bg-blue-700 flex items-center justify-center transition-colors">
+                                        <a href="https://impulso-ai.netlify.app" target="_blank" class="w-8 h-8 rounded-lg bg-blue-600 hover:bg-blue-700 flex items-center justify-center transition-colors">
                                             <i class="fa-solid fa-external-link text-white text-sm"></i>
                                         </a>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
+                                    </div>
+                                </div>
 
-                        <!-- App de Tareas -->
-                        <div class="md:col-span-2 group relative bg-gradient-to-br from-pink-900/20 to-red-900/20 rounded-2xl border border-pink-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500 cursor-pointer project-card" data-project="app-tareas">
-                            <div class="absolute inset-0 bg-gradient-to-br from-pink-600/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                                <!-- Chat Impulso -->
+                        <div class="project-grid-secondary secondary-project-size group relative bg-gradient-to-br from-orange-900/20 to-yellow-900/20 rounded-2xl border border-orange-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500 cursor-pointer project-card" data-project="chat-impulso" onclick="swapWithMainProject(this, event)">
+                            <div class="absolute inset-0 bg-gradient-to-br from-orange-600/10 to-yellow-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             <div class="relative z-10 p-6 h-full flex flex-col">
                                 <div class="flex items-center gap-3 mb-3">
-                                    <div class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
-                                        <i class="fa-solid fa-mobile-alt text-pink-400"></i>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-lg font-bold text-white">TaskMaster</h3>
-                                        <span class="text-pink-400 text-xs">Móvil</span>
-                                    </div>
-                                </div>
-                                <p class="text-slate-300 text-sm mb-4 flex-grow">
-                                    App multiplataforma para gestión de tareas con sincronización en tiempo real.
-                                </p>
-                                <div class="flex flex-wrap gap-1 mb-3">
-                                    <span class="px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded text-xs">React Native</span>
-                                    <span class="px-2 py-1 bg-orange-500/20 text-orange-300 rounded text-xs">Firebase</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-yellow-400 text-xs">Beta Testing</span>
-                                    <div class="flex gap-1">
-                                        <a href="#" class="w-6 h-6 rounded bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors">
-                                            <i class="fa-brands fa-github text-white text-xs"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                                    <div class="w-10 h-10 rounded-lg bg-orange-500/20 flex items-center justify-center">
+                                        <i class="fa-solid fa-comments text-orange-400"></i>
                             </div>
-                        </div>
-
-                        <!-- Visualizador de Algoritmos -->
-                        <div class="md:col-span-2 group relative bg-gradient-to-br from-emerald-900/20 to-teal-900/20 rounded-2xl border border-emerald-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500 cursor-pointer project-card" data-project="visualizador">
-                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-teal-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="relative z-10 p-6 h-full flex flex-col">
-                                <div class="flex items-center gap-3 mb-3">
-                                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
-                                        <i class="fa-solid fa-chart-line text-emerald-400"></i>
-                                    </div>
                                     <div>
-                                        <h3 class="text-lg font-bold text-white">AlgoViz</h3>
-                                        <span class="text-emerald-400 text-xs">Educativo</span>
-                                    </div>
-                                </div>
+                                        <h3 class="text-lg font-bold text-white">Chat Impulso</h3>
+                                        <span class="text-orange-400 text-xs">IA Conversacional</span>
+                        </div>
+                    </div>
                                 <p class="text-slate-300 text-sm mb-4 flex-grow">
-                                    Visualizador interactivo de algoritmos de ordenamiento y búsqueda.
+                                    Chatbot inteligente con IA conversacional avanzada para interacciones naturales y respuestas contextuales.
                                 </p>
                                 <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-1 bg-orange-500/20 text-orange-300 rounded text-xs">AI/ML</span>
                                     <span class="px-2 py-1 bg-yellow-500/20 text-yellow-300 rounded text-xs">JavaScript</span>
-                                    <span class="px-2 py-1 bg-red-500/20 text-red-300 rounded text-xs">Canvas</span>
-                                </div>
+                                    <span class="px-2 py-1 bg-blue-500/20 text-blue-300 rounded text-xs">Netlify</span>
+                    </div>
                                 <div class="flex items-center justify-between">
-                                    <span class="text-green-400 text-xs">Completado</span>
+                                    <div class="flex items-center gap-2 text-green-400">
+                                        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                        <span class="text-xs">En Línea</span>
+                                    </div>
                                     <div class="flex gap-1">
                                         <a href="#" class="w-6 h-6 rounded bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors">
                                             <i class="fa-brands fa-github text-white text-xs"></i>
                                         </a>
-                                        <a href="#" class="w-6 h-6 rounded bg-emerald-600 hover:bg-emerald-700 flex items-center justify-center transition-colors">
+                                        <a href="https://chat-impulso.netlify.app" target="_blank" class="w-6 h-6 rounded bg-orange-600 hover:bg-orange-700 flex items-center justify-center transition-colors">
                                             <i class="fa-solid fa-external-link text-white text-xs"></i>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
 
                         <!-- Estadísticas de GitHub -->
                         <div class="md:col-span-2 group relative bg-gradient-to-br from-slate-800/40 to-slate-900/40 rounded-2xl border border-slate-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500">
@@ -609,55 +826,7 @@
                             </div>
                         </div>
 
-                        <!-- Tecnologías Favoritas -->
-                        <div class="md:col-span-2 group relative bg-gradient-to-br from-indigo-900/20 to-blue-900/20 rounded-2xl border border-indigo-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500">
-                            <div class="relative z-10 p-6 h-full flex flex-col">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <div class="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center">
-                                        <i class="fa-solid fa-heart text-indigo-400"></i>
-                                    </div>
-                                    <h3 class="text-lg font-bold text-white">Tech Stack</h3>
-                                </div>
-                                <div class="grid grid-cols-3 gap-3 flex-grow">
-                                    <div class="text-center">
-                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-blue-500/20 flex items-center justify-center">
-                                            <i class="fa-brands fa-react text-cyan-400"></i>
-                                        </div>
-                                        <span class="text-xs text-slate-400">React</span>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-green-500/20 flex items-center justify-center">
-                                            <i class="fa-brands fa-node-js text-green-400"></i>
-                                        </div>
-                                        <span class="text-xs text-slate-400">Node.js</span>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-yellow-500/20 flex items-center justify-center">
-                                            <i class="fa-brands fa-python text-yellow-400"></i>
-                                        </div>
-                                        <span class="text-xs text-slate-400">Python</span>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-blue-500/20 flex items-center justify-center">
-                                            <i class="fa-brands fa-docker text-blue-400"></i>
-                                        </div>
-                                        <span class="text-xs text-slate-400">Docker</span>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-orange-500/20 flex items-center justify-center">
-                                            <i class="fa-solid fa-database text-orange-400"></i>
-                                        </div>
-                                        <span class="text-xs text-slate-400">DB</span>
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-purple-500/20 flex items-center justify-center">
-                                            <i class="fa-solid fa-cloud text-purple-400"></i>
-                                        </div>
-                                        <span class="text-xs text-slate-400">Cloud</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
 
                     </div>
                 </div>
@@ -665,7 +834,7 @@
         </section>
 
         <!-- Developer Dashboard Section -->
-        <section id="sobre-mi-habilidades" class="py-20">
+        <section id="sobre-mi-habilidades" class="py-20 full-page-section">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
                     <div class="flex items-center justify-center gap-4 mb-4">
@@ -674,51 +843,21 @@
                             <i class="fa-solid fa-refresh text-xs"></i>
                             <span class="hidden sm:inline">Reset</span>
                         </button>
-                    </div>
-                    <p class="text-slate-400 max-w-2xl mx-auto">Mi panel de control personal como desarrollador. Stats en tiempo real, experiencia actual y habilidades técnicas. <span class="text-blue-400">Arrastra un cuadro sobre otro para insertarlo y reorganizar el orden.</span></p>
                 </div>
+                    <p class="text-slate-400 max-w-2xl mx-auto">Mi panel de control personal como desarrollador. Stats en tiempo real, experiencia actual y habilidades técnicas. <span class="text-blue-400">Arrastra un cuadro sobre otro para insertarlo y reorganizar el orden.</span></p>
+                        </div>
                 
                 <div class="max-w-7xl mx-auto">
-                    <!-- Dashboard Header -->
-                    <div class="dashboard-card rounded-2xl p-6 mb-8 pulse-border">
-                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                                    <span class="text-white text-xl font-bold">BC</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white">Brayam Chavarro</h3>
-                                    <p class="text-slate-300">Developer FUSoft & Software Engineering Student</p>
-                                </div>
-                            </div>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="status-indicator status-online">
-                                    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                    Online
-                                </span>
-                                <span class="status-indicator status-freelance">
-                                    <i class="fa-solid fa-briefcase"></i>
-                                    Disponible para Freelance
-                                </span>
-                            </div>
-                        </div>
-                        <div class="mt-4 flex flex-wrap gap-4 text-sm">
-                            <span class="text-slate-400"><i class="fa-solid fa-map-marker-alt text-blue-400 mr-2"></i>Bogotá, Colombia</span>
-                            <span class="text-slate-400"><i class="fa-solid fa-graduation-cap text-green-400 mr-2"></i>Ing. Software - UNIEMPRESARIAL</span>
-                            <span class="text-slate-400"><i class="fa-solid fa-clock text-purple-400 mr-2"></i>GMT-5</span>
-                        </div>
-                    </div>
-
                     <!-- Main Dashboard Grid -->
                     <div id="dashboard-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         
-                        <!-- Left Column: Experience & Bio -->
+                        <!-- Left Column: Experience & Education -->
                         <div class="lg:col-span-1 space-y-6">
                             <!-- Current Experience -->
                             <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="experience">
                                 <div class="drag-handle">
                                     <i class="fa-solid fa-grip-dots-vertical"></i>
-                                </div>
+                    </div>
                                 <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                                     <i class="fa-solid fa-briefcase text-blue-400"></i>
                                     Experiencia Actual
@@ -728,15 +867,15 @@
                                         <h5 class="font-semibold text-white">FUSoft</h5>
                                         <p class="text-sm text-slate-400">2025 - Presente</p>
                                         <p class="text-sm text-slate-300 mt-2">Desarrollo de aplicaciones web, despliegue de servidores, implementación de agentes IA. Trabajando con tecnologías modernas y soluciones innovadoras.</p>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
+                        </div>
 
                             <!-- Education -->
                             <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="education">
                                 <div class="drag-handle">
                                     <i class="fa-solid fa-grip-dots-vertical"></i>
-                                </div>
+                    </div>
                                 <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                                     <i class="fa-solid fa-graduation-cap text-green-400"></i>
                                     Estudios
@@ -746,6 +885,11 @@
                                         <h5 class="font-semibold text-white">Ingeniería de Software</h5>
                                         <p class="text-sm text-slate-400">2024 - Actual</p>
                                         <p class="text-sm text-slate-300 mt-2">Fundación Universitaria Empresarial de la Cámara de Comercio de Bogotá</p>
+                        </div>
+                                    <div class="border-l-4 border-blue-500 pl-4">
+                                        <h5 class="font-semibold text-white">Ethical Hacking & Pentesting</h5>
+                                        <p class="text-sm text-slate-400">2025 - Actualidad</p>
+                                        <p class="text-sm text-slate-300 mt-2">Hack The Box Academy - Ciberseguridad y Pentesting</p>
                                     </div>
                                     <div class="border-l-4 border-purple-500 pl-4">
                                         <h5 class="font-semibold text-white">Técnico en Mantenimiento de Equipos de Cómputo</h5>
@@ -754,29 +898,9 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Quick Bio -->
-                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="bio">
-                                <div class="drag-handle">
-                                    <i class="fa-solid fa-grip-dots-vertical"></i>
-                                </div>
-                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                                    <i class="fa-solid fa-user text-green-400"></i>
-                                    Quick Bio
-                                </h4>
-                                <p class="text-slate-300 text-sm leading-relaxed">
-                                    Apasionado por la tecnología, la innovación y la ciberseguridad. Me especializo en crear soluciones web escalables que resuelvan problemas reales, con enfoque en seguridad y buenas prácticas. Actualmente estudiando ethical hacking y pentesting en Hack The Box para complementar mis habilidades de desarrollo.
-                                </p>
-                                <div class="mt-4">
-                                    <span class="achievement-badge">
-                                        <i class="fa-solid fa-shield-halved"></i>
-                                        Estudiante de Hack The Box
-                                    </span>
-                                </div>
-                            </div>
                         </div>
 
-                        <!-- Center Column: Skills & Tech Stack -->
+                        <!-- Center Column: Skills & Certifications -->
                         <div class="lg:col-span-1 space-y-6">
                             <!-- Skills -->
                             <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="skills">
@@ -839,98 +963,6 @@
                                 </div>
                             </div>
 
-
-                        </div>
-
-                        <!-- Right Column: Stats & Metrics -->
-                        <div class="lg:col-span-1 space-y-6">
-                            <!-- Development Stats -->
-                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="stats">
-                                <div class="drag-handle">
-                                    <i class="fa-solid fa-grip-dots-vertical"></i>
-                                </div>
-                                <h4 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
-                                    <i class="fa-solid fa-chart-bar text-green-400"></i>
-                                    Dev Stats 2024
-                                </h4>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="metric-card">
-                                        <div class="text-2xl font-bold text-blue-400 mb-1">50+</div>
-                                        <p class="text-sm text-slate-400">Repositorios</p>
-                                    </div>
-                                    <div class="metric-card">
-                                        <div class="text-2xl font-bold text-green-400 mb-1">500+</div>
-                                        <p class="text-sm text-slate-400">Commits</p>
-                                    </div>
-                                    <div class="metric-card">
-                                        <div class="text-2xl font-bold text-purple-400 mb-1">12</div>
-                                        <p class="text-sm text-slate-400">Proyectos</p>
-                                    </div>
-                                    <div class="metric-card">
-                                        <div class="text-2xl font-bold text-yellow-400 mb-1">8</div>
-                                        <p class="text-sm text-slate-400">Clientes</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Recent Activity -->
-                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="activity">
-                                <div class="drag-handle">
-                                    <i class="fa-solid fa-grip-dots-vertical"></i>
-                                </div>
-                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                                    <i class="fa-solid fa-clock text-cyan-400"></i>
-                                    Actividad Reciente
-                                </h4>
-                                <div class="space-y-3">
-                                    <div class="flex items-center gap-3 text-sm">
-                                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                                        <span class="text-slate-300">Deployed Impulso-IA v2.1</span>
-                                        <span class="text-slate-500 text-xs ml-auto">2h ago</span>
-                                    </div>
-                                    <div class="flex items-center gap-3 text-sm">
-                                        <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
-                                        <span class="text-slate-300">Updated portfolio design</span>
-                                        <span class="text-slate-500 text-xs ml-auto">5h ago</span>
-                                    </div>
-                                    <div class="flex items-center gap-3 text-sm">
-                                        <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
-                                        <span class="text-slate-300">Completed React Native course</span>
-                                        <span class="text-slate-500 text-xs ml-auto">1d ago</span>
-                                    </div>
-                                    <div class="flex items-center gap-3 text-sm">
-                                        <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                                        <span class="text-slate-300">Started new client project</span>
-                                        <span class="text-slate-500 text-xs ml-auto">3d ago</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Current Learning -->
-                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="learning">
-                                <div class="drag-handle">
-                                    <i class="fa-solid fa-grip-dots-vertical"></i>
-                                </div>
-                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-                                    <i class="fa-solid fa-book text-pink-400"></i>
-                                    Aprendiendo Ahora
-                                </h4>
-                                <div class="space-y-3">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-slate-300 text-sm">Ethical Hacking</span>
-                                        <span class="text-green-400 text-xs">En progreso</span>
-                                    </div>
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-slate-300 text-sm">Pentesting</span>
-                                        <span class="text-yellow-400 text-xs">Intermedio</span>
-                                    </div>
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-slate-300 text-sm">Cloud Security</span>
-                                        <span class="text-blue-400 text-xs">Básico</span>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Certifications -->
                             <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="certifications">
                                 <div class="drag-handle">
@@ -984,14 +1016,85 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Right Column: Bio, Stats & Learning -->
+                        <div class="lg:col-span-1 space-y-6">
+                            <!-- Quick Bio -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="bio">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-user text-green-400"></i>
+                                    Quick Bio
+                                </h4>
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    Apasionado por la tecnología, la innovación y la ciberseguridad. Me especializo en crear soluciones web escalables que resuelvan problemas reales, con enfoque en seguridad y buenas prácticas. Combino mis habilidades de desarrollo con conocimientos de ciberseguridad para crear aplicaciones más seguras.
+                                </p>
+                            </div>
+
+                            <!-- Development Stats -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="stats">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-bar text-green-400"></i>
+                                    Dev Stats 2024
+                                </h4>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="metric-card">
+                                        <div class="text-2xl font-bold text-blue-400 mb-1">50+</div>
+                                        <p class="text-sm text-slate-400">Repositorios</p>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="text-2xl font-bold text-green-400 mb-1">500+</div>
+                                        <p class="text-sm text-slate-400">Commits</p>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="text-2xl font-bold text-purple-400 mb-1">12</div>
+                                        <p class="text-sm text-slate-400">Proyectos</p>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="text-2xl font-bold text-yellow-400 mb-1">8</div>
+                                        <p class="text-sm text-slate-400">Clientes</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Current Learning -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="learning">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-book text-pink-400"></i>
+                                    Aprendiendo Ahora
+                                </h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-300 text-sm">Ethical Hacking</span>
+                                        <span class="text-green-400 text-xs">En progreso</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-300 text-sm">Pentesting</span>
+                                        <span class="text-yellow-400 text-xs">Intermedio</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-300 text-sm">Cloud Security</span>
+                                        <span class="text-blue-400 text-xs">Básico</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Form Section -->
-        <section id="contacto" class="py-20">
-            <div class="container mx-auto px-6">
+        <section id="contacto" class="pt-20 pb-0 full-page-section">
+            <div class="container mx-auto px-6 pb-8">
                 <div class="max-w-lg mx-auto">
                     <div class="bg-[#18181b] border border-slate-800 rounded-2xl shadow-2xl p-8 md:p-10">
                         <div class="flex items-center gap-4 mb-6">
@@ -1048,17 +1151,18 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <!-- Enhanced Footer -->
-    <footer class="bg-gradient-to-t from-slate-900/50 to-slate-800/30 border-t border-slate-700">
-        <div class="container mx-auto px-6 py-12">
+            
+            <!-- Enhanced Footer - Pegado al pie de la página -->
+            <footer class="bg-gradient-to-t from-slate-900/50 to-slate-800/30 border-t border-slate-700 mt-auto">
+        <div class="container mx-auto px-6 py-4">
             <!-- Top Section -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                 <!-- About Section -->
                 <div class="text-center md:text-left">
-                    <h3 class="text-xl font-bold text-white mb-4">Brayam Chavarro</h3>
+                    <div class="flex items-center justify-center md:justify-start gap-3 mb-2">
+                        <img src="logo-bc.png" alt="Brayam Chavarro Logo" class="w-8 h-8 object-contain">
+                        <h3 class="text-lg font-bold text-white">Brayam Chavarro</h3>
+                    </div>
                     <p class="text-slate-400 text-sm leading-relaxed">
                         Estudiante de Ingeniería de Software especializado en desarrollo web y aplicaciones. 
                         Creando soluciones tecnológicas innovadoras desde Colombia 🇨🇴
@@ -1067,22 +1171,23 @@
                 
                 <!-- Quick Links -->
                 <div class="text-center">
-                    <h3 class="text-xl font-bold text-white mb-4">Enlaces Rápidos</h3>
-                    <div class="space-y-2">
-                        <a href="#proyectos" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm">Proyectos</a>
-                        <a href="#sobre-mi-habilidades" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm">Sobre mí</a>
-                        <a href="#contacto" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm">Contacto</a>
-                        <a href="mailto:contacto@brayamchavarro.com" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm">Email</a>
+                    <h3 class="text-lg font-bold text-white mb-2">Enlaces Rápidos</h3>
+                    <div class="space-y-1">
+                        <a href="#hero" onclick="goToSection('hero', event)" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm cursor-pointer">Inicio</a>
+                        <a href="#proyectos" onclick="goToSection('proyectos', event)" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm cursor-pointer">Proyectos</a>
+                        <a href="#sobre-mi-habilidades" onclick="goToSection('sobre-mi-habilidades', event)" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm cursor-pointer">Sobre mí</a>
+                        <a href="#contacto" onclick="goToSection('contacto', event)" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm cursor-pointer">Contacto</a>
+                        <a href="mailto:brachadiazz@gmail.com" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm">Email</a>
                     </div>
                 </div>
                 
                 <!-- Contact Info -->
                 <div class="text-center md:text-right">
-                    <h3 class="text-xl font-bold text-white mb-4">Contacto</h3>
-                    <div class="space-y-2 text-sm">
+                    <h3 class="text-lg font-bold text-white mb-2">Contacto</h3>
+                    <div class="space-y-1 text-sm">
                         <p class="text-slate-400">
                             <i class="fa-solid fa-envelope text-sky-400 mr-2"></i>
-                            contacto@brayamchavarro.com
+                            brachadiazz@gmail.com
                         </p>
                         <p class="text-slate-400">
                             <i class="fa-solid fa-map-marker-alt text-sky-400 mr-2"></i>
@@ -1097,9 +1202,9 @@
             </div>
             
             <!-- Social Media Section -->
-            <div class="border-t border-slate-700 pt-8 mb-8">
+            <div class="border-t border-slate-700 pt-4 mb-4">
                 <div class="text-center">
-                    <h3 class="text-lg font-semibold text-white mb-4">Conéctate conmigo</h3>
+                    <h3 class="text-lg font-semibold text-white mb-3">Conéctate conmigo</h3>
                     <div class="flex justify-center items-center gap-4">
                         <a href="https://github.com/brayamchavarro" target="_blank" 
                            class="group flex items-center justify-center w-12 h-12 rounded-full bg-slate-800 border border-slate-600 hover:border-sky-400 hover:bg-sky-400/10 transition-all duration-300 hover:scale-110">
@@ -1119,7 +1224,7 @@
                                 <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.6.75zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633z"/>
                             </svg>
                         </a>
-                        <a href="https://instagram.com/brayamchavarro" target="_blank" 
+                        <a href="https://instagram.com/brayamcon_m" target="_blank" 
                            class="group flex items-center justify-center w-12 h-12 rounded-full bg-slate-800 border border-slate-600 hover:border-pink-400 hover:bg-pink-400/10 transition-all duration-300 hover:scale-110">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-slate-400 group-hover:text-pink-400 transition-colors" viewBox="0 0 16 16">
                                 <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.232s.008-2.389.046-3.232c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047h.001zm4.908 1.354a1.164 1.164 0 1 0-2.328 0 1.164 1.164 0 0 0 2.328 0zM8 4.405a3.595 3.595 0 1 0 0 7.19 3.595 3.595 0 0 0 0-7.19zm0 5.795a2.2 2.2 0 1 1 0-4.4 2.2 2.2 0 0 1 0 4.4z"/>
@@ -1136,21 +1241,23 @@
             </div>
             
             <!-- Bottom Section -->
-            <div class="border-t border-slate-700 pt-6 text-center">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="border-t border-slate-700 pt-4 text-center">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-2">
                     <p class="text-slate-500 text-sm">
                         &copy; 2025 Brayam Chavarro. Todos los derechos reservados.
                     </p>
                     <p class="text-slate-500 text-sm">
-                        Hecho con <span class="text-red-400">❤️</span> en Colombia
+                        Hecho con <span class="text-red-400">❤️</span> de mi para mi
                     </p>
                     <p class="text-slate-500 text-sm">
-                        Portafolio de Ingeniería de Software
+                        Linux un amorodio
                     </p>
                 </div>
             </div>
         </div>
     </footer>
+        </section>
+    </main>
 
     <script type="module">
         // --- Beams Background Animation ---
@@ -1571,6 +1678,36 @@
             }, 1000);
         }
 
+        // Initialize project swap functionality
+        function initializeProjectSwap() {
+            // Agregar event listeners a todos los proyectos
+            const projectCards = document.querySelectorAll('.project-card[data-project]');
+            
+            projectCards.forEach(card => {
+                card.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    console.log('Project card clicked:', this.getAttribute('data-project'));
+                    swapWithMainProject(this, event);
+                });
+                
+                // También agregar hover effects mejorados
+                card.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('project-swapping')) {
+                        this.style.transform = 'scale(1.02)';
+                    }
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('project-swapping')) {
+                        this.style.transform = 'scale(1)';
+                    }
+                });
+            });
+            
+            console.log('Project swap functionality initialized for', projectCards.length, 'cards');
+        }
+
         // Initialize dashboard on page load
         window.addEventListener('load', () => {
             // Initialize skill badge animations
@@ -1578,6 +1715,9 @@
             
             // Initialize drag and drop
             initializeDragAndDrop();
+            
+            // Initialize project swap
+            initializeProjectSwap();
             
             // Load saved layout
             loadDashboardLayout();
@@ -1587,6 +1727,315 @@
             counters.forEach(counter => {
                 observer.observe(counter);
             });
+        });
+
+        // ===== PROJECT SWAP FUNCTIONALITY =====
+        
+        function swapWithMainProject(clickedProject, event) {
+            // Prevenir el comportamiento por defecto si hay evento
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
+            const mainProject = document.getElementById('main-project');
+            
+            // Si se clickea el proyecto principal, no hacer nada
+            if (clickedProject === mainProject) {
+                console.log('Clicked on main project, no swap needed');
+                return;
+            }
+            
+            console.log('Starting project swap animation for:', 
+                clickedProject.getAttribute('data-project'), 
+                'with main project:', 
+                mainProject.getAttribute('data-project')
+            );
+            
+            // Marcar proyectos como en proceso de intercambio
+            clickedProject.classList.add('project-swapping');
+            mainProject.classList.add('project-swapping');
+            
+            // Deshabilitar clics durante la animación
+            clickedProject.style.pointerEvents = 'none';
+            mainProject.style.pointerEvents = 'none';
+            
+            // Agregar clases de animación de salida
+            clickedProject.classList.add('project-swap-out');
+            mainProject.classList.add('project-swap-out');
+            
+            // Animación de salida más suave
+            requestAnimationFrame(() => {
+                clickedProject.style.transform = 'scale(0.85) rotateY(8deg) translateZ(-50px)';
+                mainProject.style.transform = 'scale(0.85) rotateY(-8deg) translateZ(-50px)';
+            });
+            
+            setTimeout(() => {
+                console.log('Phase 2: Swapping content and positions...');
+                
+                // Intercambiar contenido HTML
+                const clickedHTML = clickedProject.innerHTML;
+                const mainHTML = mainProject.innerHTML;
+                
+                clickedProject.innerHTML = mainHTML;
+                mainProject.innerHTML = clickedHTML;
+                
+                // Intercambiar clases CSS pero manteniendo tamaños consistentes
+                const clickedClasses = clickedProject.className;
+                const mainClasses = mainProject.className;
+                
+                // Limpiar todas las clases de animación y tamaño
+                const cleanClickedClasses = clickedClasses
+                    .replace(/project-swapping|project-swap-out|project-swap-in|project-swap-final|main-project-size|secondary-project-size|project-grid-main|project-grid-secondary/g, '')
+                    .trim();
+                const cleanMainClasses = mainClasses
+                    .replace(/project-swapping|project-swap-out|project-swap-in|project-swap-final|main-project-size|secondary-project-size|project-grid-main|project-grid-secondary/g, '')
+                    .trim();
+                
+                // Remover clases de layout específicas y agregar las correctas
+                const baseMainClasses = cleanMainClasses.replace(/md:col-span-\d+\s*md:row-span-\d+|md:col-span-\d+/g, '').trim();
+                const baseSecondaryClasses = cleanClickedClasses.replace(/md:col-span-\d+\s*md:row-span-\d+|md:col-span-\d+/g, '').trim();
+                
+                // Aplicar clases con tamaños consistentes
+                clickedProject.className = `${baseMainClasses} project-grid-main main-project-size project-swapping`.replace(/\s+/g, ' ').trim();
+                mainProject.className = `${baseSecondaryClasses} project-grid-secondary secondary-project-size project-swapping`.replace(/\s+/g, ' ').trim();
+                
+                // Intercambiar data-project attributes
+                const clickedDataProject = clickedProject.getAttribute('data-project');
+                const mainDataProject = mainProject.getAttribute('data-project');
+                
+                clickedProject.setAttribute('data-project', mainDataProject);
+                mainProject.setAttribute('data-project', clickedDataProject);
+                
+                // Mantener el ID main-project en el elemento que ahora está en la posición principal
+                clickedProject.id = 'main-project';
+                mainProject.removeAttribute('id');
+                
+                // Remover clases de salida y agregar clases de entrada
+                requestAnimationFrame(() => {
+                    clickedProject.classList.remove('project-swap-out');
+                    mainProject.classList.remove('project-swap-out');
+                    clickedProject.classList.add('project-swap-in');
+                    mainProject.classList.add('project-swap-in');
+                });
+                
+                // Animación de entrada
+                setTimeout(() => {
+                    console.log('Phase 3: Entry animation...');
+                    
+                    // Efecto de rebote final más suave
+                    setTimeout(() => {
+                        clickedProject.classList.remove('project-swap-in');
+                        mainProject.classList.remove('project-swap-in');
+                        clickedProject.classList.add('project-swap-final');
+                        mainProject.classList.add('project-swap-final');
+                        
+                        // Limpieza final
+                        setTimeout(() => {
+                            // Remover clases de animación pero mantener clases de tamaño
+                            clickedProject.classList.remove('project-swapping', 'project-swap-final');
+                            mainProject.classList.remove('project-swapping', 'project-swap-final');
+                            
+                            // Limpiar estilos inline
+                            clickedProject.style.transform = '';
+                            mainProject.style.transform = '';
+                            clickedProject.style.filter = '';
+                            mainProject.style.filter = '';
+                            clickedProject.style.opacity = '';
+                            mainProject.style.opacity = '';
+                            
+                            // Rehabilitar clics
+                            clickedProject.style.pointerEvents = 'auto';
+                            mainProject.style.pointerEvents = 'auto';
+                            
+                            console.log('Project swap completed successfully!');
+                            
+                            // Reinitializar event listeners para los proyectos intercambiados
+                            setTimeout(() => {
+                                initializeProjectSwap();
+                            }, 100);
+                            
+                        }, 250);
+                        
+                    }, 200);
+                }, 100);
+                
+                // Notificación deshabilitada por solicitud del usuario
+                // showProjectSwapNotification();
+                
+            }, 400);
+        }
+        
+        function showProjectSwapNotification() {
+            // Remover notificación existente si existe
+            const existing = document.querySelector('.swap-notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = 'swap-notification fixed top-24 right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-xl text-sm z-50 opacity-0 transition-all duration-500 shadow-2xl border border-blue-400/30';
+            notification.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                        <i class="fa-solid fa-sync-alt text-white animate-spin"></i>
+                    </div>
+                    <div>
+                        <div class="font-semibold">Proyectos intercambiados</div>
+                        <div class="text-xs opacity-80">Animación completada ✨</div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            // Animar entrada con efecto más suave
+            requestAnimationFrame(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0) scale(1)';
+                notification.style.filter = 'blur(0px)';
+            });
+            
+            // Inicialmente fuera de pantalla
+            notification.style.transform = 'translateX(100%) scale(0.8)';
+            notification.style.filter = 'blur(2px)';
+            
+            // Animar salida y remover
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%) scale(0.8)';
+                notification.style.filter = 'blur(2px)';
+                setTimeout(() => notification.remove(), 500);
+                         }, 3000);
+         }
+
+        // ===== FULL PAGE NAVIGATION =====
+        
+        let currentSection = 0;
+        const sections = ['hero', 'proyectos', 'sobre-mi-habilidades', 'contacto'];
+        
+        function navigateSection(direction) {
+            if (direction === 'up' && currentSection > 0) {
+                currentSection--;
+                goToSection(sections[currentSection]);
+            } else if (direction === 'down' && currentSection < sections.length - 1) {
+                currentSection++;
+                goToSection(sections[currentSection]);
+            }
+            updateNavigationState();
+        }
+        
+        function goToSection(sectionId, event) {
+            // Prevent default link behavior
+            if (event) {
+                event.preventDefault();
+            }
+            
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Update current section
+                currentSection = sections.indexOf(sectionId);
+                updateNavigationState();
+                updateActiveIndicator(sectionId);
+            }
+        }
+        
+        function updateNavigationState() {
+            const navUp = document.getElementById('nav-up');
+            const navDown = document.getElementById('nav-down');
+            
+            // Update arrow states
+            if (currentSection === 0) {
+                navUp.classList.add('disabled');
+            } else {
+                navUp.classList.remove('disabled');
+            }
+            
+            if (currentSection === sections.length - 1) {
+                navDown.classList.add('disabled');
+            } else {
+                navDown.classList.remove('disabled');
+            }
+        }
+        
+        function updateActiveIndicator(sectionId) {
+            // Remove active class from all indicators
+            document.querySelectorAll('.section-dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Add active class to current section indicator
+            const activeIndicator = document.querySelector(`[data-section="${sectionId}"]`);
+            if (activeIndicator) {
+                activeIndicator.classList.add('active');
+            }
+            
+            // Update main menu active states
+            updateMenuActiveStates(sectionId);
+        }
+        
+        function updateMenuActiveStates(sectionId) {
+            // Remove active classes from all menu items
+            document.querySelectorAll('#nav-hero, #nav-proyectos, #nav-sobre-mi-habilidades, #nav-contacto').forEach(item => {
+                item.classList.remove('nav-item-active');
+            });
+            
+            // Add active class to current menu item
+            const activeMenuItem = document.getElementById(`nav-${sectionId}`);
+            if (activeMenuItem) {
+                activeMenuItem.classList.add('nav-item-active');
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+                e.preventDefault();
+                navigateSection('up');
+            } else if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+                e.preventDefault();
+                navigateSection('down');
+            }
+        });
+        
+        // Scroll detection for updating current section
+        let isScrolling = false;
+        
+        function updateCurrentSectionOnScroll() {
+            if (isScrolling) return;
+            
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = document.getElementById(sections[i]);
+                if (section && scrollPosition >= section.offsetTop) {
+                    if (currentSection !== i) {
+                        currentSection = i;
+                        updateNavigationState();
+                        updateActiveIndicator(sections[i]);
+                    }
+                    break;
+                }
+            }
+        }
+        
+        // Throttled scroll listener
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(updateCurrentSectionOnScroll, 100);
+        });
+        
+        // Initialize navigation state
+        window.addEventListener('load', () => {
+            updateNavigationState();
+            updateCurrentSectionOnScroll();
+            // Initialize menu active state to first section
+            updateMenuActiveStates('hero');
         });
 
     </script>
