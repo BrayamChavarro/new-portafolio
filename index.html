@@ -62,22 +62,63 @@
             outline: none;
         }
 
-        /* Marquee Animation */
-        .marquee {
-            overflow: hidden;
+        /* Floating Social Sidebar */
+        .social-sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .social-sidebar a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(30, 30, 37, 0.8);
+            border: 1px solid #374151;
+            border-radius: 50%;
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
             position: relative;
-            white-space: nowrap;
+            overflow: hidden;
         }
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 45s linear infinite;
+        
+        .social-sidebar a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        .marquee-content > * {
-            margin-right: 4rem; /* Increased space between items */
+        
+        .social-sidebar a:hover::before {
+            opacity: 1;
         }
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-100%); }
+        
+        .social-sidebar a:hover {
+            color: #ffffff;
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            transform: scale(1.1);
+        }
+        
+        /* Hide on small screens */
+        @media (max-width: 768px) {
+            .social-sidebar {
+                display: none;
+            }
         }
 
         /* Particle styles */
@@ -136,61 +177,274 @@
         .shiny-btn:hover::before {
             left: 150%;
         }
+
+        /* Bento Grid Project Cards */
+        .project-card {
+            position: relative;
+            background: linear-gradient(135deg, rgba(15, 15, 23, 0.8) 0%, rgba(20, 20, 30, 0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            border-radius: inherit;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(56, 189, 248, 0.1);
+        }
+
+        /* Terminal specific styles */
+        .terminal-container {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .terminal-header {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animated gradient background for hero */
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #0B0B0F, #1a1a2e, #16213e, #0B0B0F);
+            background-size: 400% 400%;
+            animation: gradient-animation 15s ease infinite;
+        }
+
+        /* Developer Dashboard Styles */
+        .dashboard-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.8) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
+        }
+
+        .skill-bar {
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 8px;
+            overflow: hidden;
+            height: 8px;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 8px;
+            transition: width 2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-online {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-freelance {
+            background: rgba(168, 85, 247, 0.2);
+            color: #a855f7;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 16px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            background: rgba(15, 23, 42, 0.6);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 20px;
+            color: #fbbf24;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.6); }
+        }
+
+        .pulse-border {
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* Drag and Drop Styles */
+        .draggable {
+            cursor: grab;
+            transition: all 0.3s ease;
+        }
+
+        .draggable:active {
+            cursor: grabbing;
+        }
+
+        .draggable:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .dragging {
+            opacity: 0.5;
+            transform: rotate(5deg) scale(1.05);
+            z-index: 1000;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .drag-over {
+            border: 2px dashed #38bdf8;
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+
+        .drop-zone {
+            position: relative;
+            min-height: 200px;
+        }
+
+        .drag-handle {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 24px;
+            height: 24px;
+            background: rgba(56, 189, 248, 0.2);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 20;
+        }
+
+        .draggable:hover .drag-handle {
+            opacity: 1;
+        }
+
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+
+        .drag-handle i {
+            color: #38bdf8;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body class="dark-grid-bg">
 
-    <!-- Social Media Banner -->
-    <div class="bg-slate-800 py-2 text-sm text-slate-300 marquee">
-        <div class="marquee-content">
-            <!-- Content is duplicated for a seamless loop -->
-            <span class="inline-flex items-center">
-                <a href="#" target="_blank" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
-            </span>
-            <span class="inline-flex items-center">
-                <a href="#" target="_blank" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>LinkedIn</a>
-            </span>
-            <span class="inline-flex items-center">
-                <a href="#" target="_blank" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.6.75zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633z"/></svg>Twitter (X)</a>
-            </span>
-             <span class="inline-flex items-center">
-                <a href="#" target="_blank" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.232s.008-2.389.046-3.232c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047h.001zm4.908 1.354a1.164 1.164 0 1 0-2.328 0 1.164 1.164 0 0 0 2.328 0zM8 4.405a3.595 3.595 0 1 0 0 7.19 3.595 3.595 0 0 0 0-7.19zm0 5.795a2.2 2.2 0 1 1 0-4.4 2.2 2.2 0 0 1 0 4.4z"/></svg>Instagram</a>
-            </span>
-            <span class="inline-flex items-center">
-                <a href="mailto:contacto@brayamchavarro.com" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.385L8 9.583l-1.326-.795-5.64 3.385A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>Email</a>
-            </span>
-            <!-- Duplicated content -->
-            <span class="inline-flex items-center">
-                <a href="#" target="_blank" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
-            </span>
-            <span class="inline-flex items-center">
-                <a href="#" target="_blank" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>LinkedIn</a>
-            </span>
-            <span class="inline-flex items-center">
-                <a href="#" target="_blank" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.6.75zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633z"/></svg>Twitter (X)</a>
-            </span>
-             <span class="inline-flex items-center">
-                <a href="#" target="_blank" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.232s.008-2.389.046-3.232c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047h.001zm4.908 1.354a1.164 1.164 0 1 0-2.328 0 1.164 1.164 0 0 0 2.328 0zM8 4.405a3.595 3.595 0 1 0 0 7.19 3.595 3.595 0 0 0 0-7.19zm0 5.795a2.2 2.2 0 1 1 0-4.4 2.2 2.2 0 0 1 0 4.4z"/></svg>Instagram</a>
-            </span>
-            <span class="inline-flex items-center">
-                <a href="mailto:contacto@brayamchavarro.com" class="flex items-center hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-2" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.385L8 9.583l-1.326-.795-5.64 3.385A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/></svg>Email</a>
-            </span>
-        </div>
+    <!-- Floating Social Media Sidebar -->
+    <div class="social-sidebar">
+        <a href="https://github.com/brayamchavarro" target="_blank" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+        </a>
+        <a href="https://linkedin.com/in/brayamchavarro" target="_blank" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+            </svg>
+        </a>
+        <a href="https://twitter.com/brayamchavarro" target="_blank" title="Twitter (X)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.6.75zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633z"/>
+            </svg>
+        </a>
+        <a href="https://instagram.com/brayamchavarro" target="_blank" title="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.232s.008-2.389.046-3.232c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047h.001zm4.908 1.354a1.164 1.164 0 1 0-2.328 0 1.164 1.164 0 0 0 2.328 0zM8 4.405a3.595 3.595 0 1 0 0 7.19 3.595 3.595 0 0 0 0-7.19zm0 5.795a2.2 2.2 0 1 1 0-4.4 2.2 2.2 0 0 1 0 4.4z"/>
+            </svg>
+        </a>
+        <a href="mailto:contacto@brayamchavarro.com" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.385L8 9.583l-1.326-.795-5.64 3.385A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+            </svg>
+        </a>
     </div>
 
     <!-- Nuevo Menú Principal estilo Ultra -->
-    <header class="fixed top-6 left-1/2 z-50 -translate-x-1/2 w-fit px-6 py-2 bg-[#18181b]/80 backdrop-blur-md rounded-full border border-[#232329] shadow-lg flex items-center gap-2 md:gap-6">
+    <header class="fixed top-10 left-1/2 z-50 -translate-x-1/2 w-fit px-6 py-2 bg-[#18181b]/80 backdrop-blur-md rounded-full border border-[#232329] shadow-lg flex items-center gap-2 md:gap-6">
         <nav class="flex items-center gap-2 md:gap-6 text-base font-medium">
             <a href="#proyectos" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Proyectos</a>
-            <a href="#habilidades" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Habilidades</a>
+            <a href="#sobre-mi-habilidades" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Dashboard</a>
             <a href="#contacto" class="text-slate-200 hover:text-white transition-colors px-3 py-1">Contacto</a>
         </nav>
-        <a href="#sobre-mi" class="ml-2 px-4 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold border border-white/20 transition-colors shadow">Sobre mí</a>
+        <a href="#sobre-mi-habilidades" class="ml-2 px-4 py-1 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold border border-white/20 transition-colors shadow">Sobre mí</a>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-section py-24 md:py-32">
+        <section class="hero-section animated-gradient py-24 md:py-32">
             <canvas id="beams-background-canvas"></canvas>
             <div class="relative z-10 container mx-auto px-6 text-center">
                 <div class="h-24 md:h-32 flex items-center justify-center">
@@ -216,125 +470,520 @@
             <div class="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#0B0B0F] to-transparent pointer-events-none z-20"></div>
         </section>
 
-        <!-- Projects Carousel Section -->
+        <!-- Bento Grid Projects Section -->
         <section id="proyectos" class="py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">Proyectos Destacados</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Proyectos Destacados</h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">Explora mis proyectos más relevantes. Haz clic en cada uno para ver más detalles.</p>
                 </div>
-                <div class="relative max-w-6xl mx-auto">
-                    <!-- Slider Wrapper -->
-                    <div id="projects-slider" class="overflow-hidden">
-                        <div id="projects-track" class="flex transition-transform duration-700 ease-in-out">
-                            <!-- Proyecto 1 -->
-                            <div class="min-w-full flex flex-col md:flex-row items-center gap-8 md:gap-16 p-0 md:p-0">
-                                <div class="relative w-full md:w-[70%] h-[500px] md:h-[700px] group">
-                                    <img src="impulso.png" alt="Impulso-IA" class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 will-change-transform" id="parallax-impulso">
-                                </div>
-                                <div class="flex-1 text-left px-6 md:px-0">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">Impulso-IA</h3>
-                                    <p class="text-slate-300 mb-4">Desarrollo de una plataforma de inteligencia artificial para potenciar procesos empresariales y automatizar tareas clave.</p>
-                                    <div class="mb-2">
-                                        <span class="font-semibold text-white">Tecnologías:</span>
-                                        <span class="text-slate-400">Python, FastAPI, React, Docker, PostgreSQL</span>
+                
+                <div class="max-w-7xl mx-auto">
+                    <!-- Bento Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-[minmax(200px,auto)]">
+                        
+                        <!-- Proyecto Principal - Impulso IA -->
+                        <div class="md:col-span-4 md:row-span-2 group relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-2xl border border-blue-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500 cursor-pointer project-card" data-project="impulso-ia">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="relative z-10 p-8 h-full flex flex-col">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
+                                        <i class="fa-solid fa-robot text-blue-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-white">Impulso-IA</h3>
+                                        <span class="text-blue-400 text-sm">Inteligencia Artificial</span>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Proyecto 2 -->
-                            <div class="min-w-full flex flex-col md:flex-row-reverse items-center gap-8 md:gap-16 p-0 md:p-0">
-                                <img src="https://placehold.co/600x450/be185d/FFFFFF?text=App+de+Tareas" alt="App de Tareas" class="w-full md:w-[60%] h-[400px] md:h-[600px] object-cover rounded-2xl shadow-2xl">
-                                <div class="flex-1 text-left px-6 md:px-0">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">App Móvil de Tareas</h3>
-                                    <p class="text-slate-300 mb-4">Aplicación para iOS y Android que permite a los usuarios gestionar sus tareas diarias, establecer recordatorios y colaborar en listas.</p>
-                                    <div class="mb-2">
-                                        <span class="font-semibold text-white">Tecnologías:</span>
-                                        <span class="text-slate-400">React Native, Firebase, Expo</span>
-                                    </div>
+                                <p class="text-slate-300 text-lg mb-6 flex-grow">
+                                    Plataforma completa de IA para automatizar procesos empresariales con procesamiento de lenguaje natural y machine learning.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">Python</span>
+                                    <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">FastAPI</span>
+                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm">React</span>
+                                    <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm">Docker</span>
                                 </div>
-                            </div>
-                            <!-- Proyecto 3 -->
-                            <div class="min-w-full flex flex-col md:flex-row items-center gap-8 md:gap-16 p-0 md:p-0">
-                                <img src="https://placehold.co/600x450/059669/FFFFFF?text=Visualizador+de+Algoritmos" alt="Visualizador de Algoritmos" class="w-full md:w-[60%] h-[400px] md:h-[600px] object-cover rounded-2xl shadow-2xl">
-                                <div class="flex-1 text-left px-6 md:px-0">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3">Visualizador de Algoritmos</h3>
-                                    <p class="text-slate-300 mb-4">Herramienta web interactiva para visualizar el funcionamiento de algoritmos de ordenamiento y búsqueda en tiempo real.</p>
-                                    <div class="mb-2">
-                                        <span class="font-semibold text-white">Tecnologías:</span>
-                                        <span class="text-slate-400">JavaScript (ES6+), HTML5 Canvas, CSS3</span>
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center gap-2 text-green-400">
+                                        <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                        <span class="text-sm">En Producción</span>
+                                    </div>
+                                    <div class="flex gap-2">
+                                        <a href="#" target="_blank" class="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors">
+                                            <i class="fa-brands fa-github text-white text-sm"></i>
+                                        </a>
+                                        <a href="#" target="_blank" class="w-8 h-8 rounded-lg bg-blue-600 hover:bg-blue-700 flex items-center justify-center transition-colors">
+                                            <i class="fa-solid fa-external-link text-white text-sm"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Flechitas -->
-                    <div class="flex justify-center items-center gap-6 mt-8">
-                        <button id="prev-project" class="p-3 rounded-full border border-slate-700 bg-[#232329] hover:bg-slate-800 text-slate-400 hover:text-white transition-colors focus:outline-none">
-                            <i class="fa-solid fa-chevron-left"></i>
-                        </button>
-                        <button id="next-project" class="p-3 rounded-full border border-slate-700 bg-[#232329] hover:bg-slate-800 text-slate-400 hover:text-white transition-colors focus:outline-none">
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </button>
+
+                        <!-- App de Tareas -->
+                        <div class="md:col-span-2 group relative bg-gradient-to-br from-pink-900/20 to-red-900/20 rounded-2xl border border-pink-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500 cursor-pointer project-card" data-project="app-tareas">
+                            <div class="absolute inset-0 bg-gradient-to-br from-pink-600/10 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="relative z-10 p-6 h-full flex flex-col">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
+                                        <i class="fa-solid fa-mobile-alt text-pink-400"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-white">TaskMaster</h3>
+                                        <span class="text-pink-400 text-xs">Móvil</span>
+                                    </div>
+                                </div>
+                                <p class="text-slate-300 text-sm mb-4 flex-grow">
+                                    App multiplataforma para gestión de tareas con sincronización en tiempo real.
+                                </p>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded text-xs">React Native</span>
+                                    <span class="px-2 py-1 bg-orange-500/20 text-orange-300 rounded text-xs">Firebase</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-yellow-400 text-xs">Beta Testing</span>
+                                    <div class="flex gap-1">
+                                        <a href="#" class="w-6 h-6 rounded bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors">
+                                            <i class="fa-brands fa-github text-white text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Visualizador de Algoritmos -->
+                        <div class="md:col-span-2 group relative bg-gradient-to-br from-emerald-900/20 to-teal-900/20 rounded-2xl border border-emerald-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500 cursor-pointer project-card" data-project="visualizador">
+                            <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-teal-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="relative z-10 p-6 h-full flex flex-col">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <div class="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                                        <i class="fa-solid fa-chart-line text-emerald-400"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-white">AlgoViz</h3>
+                                        <span class="text-emerald-400 text-xs">Educativo</span>
+                                    </div>
+                                </div>
+                                <p class="text-slate-300 text-sm mb-4 flex-grow">
+                                    Visualizador interactivo de algoritmos de ordenamiento y búsqueda.
+                                </p>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="px-2 py-1 bg-yellow-500/20 text-yellow-300 rounded text-xs">JavaScript</span>
+                                    <span class="px-2 py-1 bg-red-500/20 text-red-300 rounded text-xs">Canvas</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-green-400 text-xs">Completado</span>
+                                    <div class="flex gap-1">
+                                        <a href="#" class="w-6 h-6 rounded bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors">
+                                            <i class="fa-brands fa-github text-white text-xs"></i>
+                                        </a>
+                                        <a href="#" class="w-6 h-6 rounded bg-emerald-600 hover:bg-emerald-700 flex items-center justify-center transition-colors">
+                                            <i class="fa-solid fa-external-link text-white text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Estadísticas de GitHub -->
+                        <div class="md:col-span-2 group relative bg-gradient-to-br from-slate-800/40 to-slate-900/40 rounded-2xl border border-slate-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500">
+                            <div class="relative z-10 p-6 h-full flex flex-col items-center justify-center text-center">
+                                <div class="w-12 h-12 rounded-full bg-slate-700 flex items-center justify-center mb-4">
+                                    <i class="fa-brands fa-github text-white text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-2">GitHub Stats</h3>
+                                <div class="grid grid-cols-2 gap-4 w-full">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-blue-400">50+</div>
+                                        <div class="text-xs text-slate-400">Repositorios</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-400">100+</div>
+                                        <div class="text-xs text-slate-400">Commits</div>
+                                    </div>
+                                </div>
+                                <a href="https://github.com/brayamchavarro" target="_blank" class="mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg transition-colors">
+                                    Ver Perfil
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Tecnologías Favoritas -->
+                        <div class="md:col-span-2 group relative bg-gradient-to-br from-indigo-900/20 to-blue-900/20 rounded-2xl border border-indigo-700/30 overflow-hidden hover:scale-[1.02] transition-all duration-500">
+                            <div class="relative z-10 p-6 h-full flex flex-col">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center">
+                                        <i class="fa-solid fa-heart text-indigo-400"></i>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-white">Tech Stack</h3>
+                                </div>
+                                <div class="grid grid-cols-3 gap-3 flex-grow">
+                                    <div class="text-center">
+                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-blue-500/20 flex items-center justify-center">
+                                            <i class="fa-brands fa-react text-cyan-400"></i>
+                                        </div>
+                                        <span class="text-xs text-slate-400">React</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-green-500/20 flex items-center justify-center">
+                                            <i class="fa-brands fa-node-js text-green-400"></i>
+                                        </div>
+                                        <span class="text-xs text-slate-400">Node.js</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-yellow-500/20 flex items-center justify-center">
+                                            <i class="fa-brands fa-python text-yellow-400"></i>
+                                        </div>
+                                        <span class="text-xs text-slate-400">Python</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-blue-500/20 flex items-center justify-center">
+                                            <i class="fa-brands fa-docker text-blue-400"></i>
+                                        </div>
+                                        <span class="text-xs text-slate-400">Docker</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-orange-500/20 flex items-center justify-center">
+                                            <i class="fa-solid fa-database text-orange-400"></i>
+                                        </div>
+                                        <span class="text-xs text-slate-400">DB</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="w-8 h-8 mx-auto mb-1 rounded bg-purple-500/20 flex items-center justify-center">
+                                            <i class="fa-solid fa-cloud text-purple-400"></i>
+                                        </div>
+                                        <span class="text-xs text-slate-400">Cloud</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección combinada Sobre mí + Habilidades en Bento Grid -->
+        <!-- Developer Dashboard Section -->
         <section id="sobre-mi-habilidades" class="py-20">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Sobre mí &amp; Habilidades</h2>
-                    <p class="text-slate-400 mt-2 max-w-2xl mx-auto">Conoce quién soy y las tecnologías con las que trabajo.</p>
+                <div class="text-center mb-16">
+                    <div class="flex items-center justify-center gap-4 mb-4">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white">Developer Dashboard</h2>
+                        <button onclick="resetDashboardLayout()" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white text-sm rounded-lg transition-colors flex items-center gap-2" title="Restablecer layout original">
+                            <i class="fa-solid fa-refresh text-xs"></i>
+                            <span class="hidden sm:inline">Reset</span>
+                        </button>
+                    </div>
+                    <p class="text-slate-400 max-w-2xl mx-auto">Mi panel de control personal como desarrollador. Stats en tiempo real, experiencia actual y habilidades técnicas. <span class="text-blue-400">Arrastra un cuadro sobre otro para insertarlo y reorganizar el orden.</span></p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    <!-- Sobre mí (tarjeta grande) -->
-                    <div class="relative group rounded-2xl p-8 bg-gradient-to-br from-slate-900/80 via-slate-800/70 to-slate-900/90 border border-slate-700/40 shadow-xl md:col-span-2 row-span-2 flex flex-col justify-center min-h-[340px]">
-                        <h3 class="text-2xl font-bold text-white mb-4">Sobre mí</h3>
-                        <div class="w-full bg-[#18181b] rounded-xl shadow-inner p-4 font-mono text-base md:text-lg text-green-400 relative overflow-hidden min-h-[80px]">
-                            <pre id="console-typewriter-bento" class="whitespace-pre-wrap min-h-[80px]">$ <span class="animate-cursor">|</span></pre>
+                
+                <div class="max-w-7xl mx-auto">
+                    <!-- Dashboard Header -->
+                    <div class="dashboard-card rounded-2xl p-6 mb-8 pulse-border">
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                                    <span class="text-white text-xl font-bold">BC</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-white">Brayam Chavarro</h3>
+                                    <p class="text-slate-300">Developer FUSoft & Software Engineering Student</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="status-indicator status-online">
+                                    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                    Online
+                                </span>
+                                <span class="status-indicator status-freelance">
+                                    <i class="fa-solid fa-briefcase"></i>
+                                    Disponible para Freelance
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex flex-wrap gap-4 text-sm">
+                            <span class="text-slate-400"><i class="fa-solid fa-map-marker-alt text-blue-400 mr-2"></i>Bogotá, Colombia</span>
+                            <span class="text-slate-400"><i class="fa-solid fa-graduation-cap text-green-400 mr-2"></i>Ing. Software - UNIEMPRESARIAL</span>
+                            <span class="text-slate-400"><i class="fa-solid fa-clock text-purple-400 mr-2"></i>GMT-5</span>
                         </div>
                     </div>
-                    <!-- Frontend -->
-                    <div class="relative group rounded-2xl p-8 bg-gradient-to-br from-sky-900/60 via-sky-800/40 to-slate-900/80 border border-sky-700/30 shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-center">
-                        <div class="absolute -top-8 -right-8 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
-                            <i class="fa-solid fa-code fa-4x text-sky-400"></i>
+
+                    <!-- Main Dashboard Grid -->
+                    <div id="dashboard-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        
+                        <!-- Left Column: Experience & Bio -->
+                        <div class="lg:col-span-1 space-y-6">
+                            <!-- Current Experience -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="experience">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-briefcase text-blue-400"></i>
+                                    Experiencia Actual
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="border-l-4 border-blue-500 pl-4">
+                                        <h5 class="font-semibold text-white">FUSoft</h5>
+                                        <p class="text-sm text-slate-400">2025 - Presente</p>
+                                        <p class="text-sm text-slate-300 mt-2">Desarrollo de aplicaciones web, despliegue de servidores, implementación de agentes IA. Trabajando con tecnologías modernas y soluciones innovadoras.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Education -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="education">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-graduation-cap text-green-400"></i>
+                                    Estudios
+                                </h4>
+                                <div class="space-y-4">
+                                    <div class="border-l-4 border-green-500 pl-4">
+                                        <h5 class="font-semibold text-white">Ingeniería de Software</h5>
+                                        <p class="text-sm text-slate-400">2024 - Actual</p>
+                                        <p class="text-sm text-slate-300 mt-2">Fundación Universitaria Empresarial de la Cámara de Comercio de Bogotá</p>
+                                    </div>
+                                    <div class="border-l-4 border-purple-500 pl-4">
+                                        <h5 class="font-semibold text-white">Técnico en Mantenimiento de Equipos de Cómputo</h5>
+                                        <p class="text-sm text-slate-400">2022 - 2023</p>
+                                        <p class="text-sm text-slate-300 mt-2">SENA (Servicio Nacional de Aprendizaje)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Bio -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="bio">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-user text-green-400"></i>
+                                    Quick Bio
+                                </h4>
+                                <p class="text-slate-300 text-sm leading-relaxed">
+                                    Apasionado por la tecnología, la innovación y la ciberseguridad. Me especializo en crear soluciones web escalables que resuelvan problemas reales, con enfoque en seguridad y buenas prácticas. Actualmente estudiando ethical hacking y pentesting en Hack The Box para complementar mis habilidades de desarrollo.
+                                </p>
+                                <div class="mt-4">
+                                    <span class="achievement-badge">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                        Estudiante de Hack The Box
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2 relative z-10">Frontend</h3>
-                        <ul class="text-slate-300 relative z-10 space-y-1">
-                            <li><i class="fa-brands fa-html5 text-orange-400 mr-2"></i>HTML5</li>
-                            <li><i class="fa-brands fa-css3-alt text-blue-400 mr-2"></i>CSS3</li>
-                            <li><i class="fa-brands fa-js text-yellow-300 mr-2"></i>JavaScript (ES6+)</li>
-                            <li><i class="fa-brands fa-react text-cyan-400 mr-2"></i>React, Next.js</li>
-                            <li><i class="fa-solid fa-paintbrush text-pink-400 mr-2"></i>Tailwind CSS, Figma</li>
-                        </ul>
-                    </div>
-                    <!-- Backend -->
-                    <div class="relative group rounded-2xl p-8 bg-gradient-to-br from-emerald-900/60 via-emerald-800/40 to-slate-900/80 border border-emerald-700/30 shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-center">
-                        <div class="absolute -top-8 -right-8 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
-                            <i class="fa-solid fa-database fa-4x text-emerald-400"></i>
+
+                        <!-- Center Column: Skills & Tech Stack -->
+                        <div class="lg:col-span-1 space-y-6">
+                            <!-- Skills -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="skills">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                                    <i class="fa-solid fa-code text-purple-400"></i>
+                                    Habilidades Técnicas
+                                </h4>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="skill-badge">
+                                        <div class="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-red-500/20 to-orange-500/20 border border-red-500/30">
+                                            <i class="fa-brands fa-java text-red-400"></i>
+                                            <span class="text-white font-medium text-sm">Java Spring Boot</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill-badge">
+                                        <div class="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-orange-500/20 to-yellow-500/20 border border-orange-500/30">
+                                            <i class="fa-brands fa-html5 text-orange-400"></i>
+                                            <span class="text-white font-medium text-sm">HTML</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill-badge">
+                                        <div class="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30">
+                                            <i class="fa-brands fa-css3-alt text-blue-400"></i>
+                                            <span class="text-white font-medium text-sm">CSS</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill-badge">
+                                        <div class="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30">
+                                            <i class="fa-brands fa-js text-yellow-400"></i>
+                                            <span class="text-white font-medium text-sm">JavaScript</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill-badge">
+                                        <div class="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-gray-500/20 to-slate-500/20 border border-gray-500/30">
+                                            <i class="fa-brands fa-linux text-gray-300"></i>
+                                            <span class="text-white font-medium text-sm">Linux</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill-badge">
+                                        <div class="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-500/30">
+                                            <i class="fa-brands fa-docker text-blue-400"></i>
+                                            <span class="text-white font-medium text-sm">Docker</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill-badge">
+                                        <div class="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-indigo-500/20 to-blue-500/20 border border-indigo-500/30">
+                                            <i class="fa-solid fa-database text-indigo-400"></i>
+                                            <span class="text-white font-medium text-sm">SQL</span>
+                                        </div>
+                                    </div>
+                                    <div class="skill-badge">
+                                        <div class="flex items-center gap-2 p-3 rounded-lg bg-gradient-to-r from-yellow-500/20 to-red-500/20 border border-yellow-500/30">
+                                            <i class="fa-solid fa-fire text-yellow-400"></i>
+                                            <span class="text-white font-medium text-sm">Firebase</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2 relative z-10">Backend</h3>
-                        <ul class="text-slate-300 relative z-10 space-y-1">
-                            <li><i class="fa-brands fa-node-js text-green-400 mr-2"></i>Node.js, Express</li>
-                            <li><i class="fa-brands fa-python text-yellow-200 mr-2"></i>Python, Django</li>
-                            <li><i class="fa-solid fa-database text-blue-300 mr-2"></i>SQL (PostgreSQL, MySQL)</li>
-                            <li><i class="fa-solid fa-database text-green-300 mr-2"></i>NoSQL (MongoDB)</li>
-                            <li><i class="fa-brands fa-java text-red-400 mr-2"></i>Java</li>
-                        </ul>
-                    </div>
-                    <!-- Herramientas y Otros -->
-                    <div class="relative group rounded-2xl p-8 bg-gradient-to-br from-fuchsia-900/60 via-fuchsia-800/40 to-slate-900/80 border border-fuchsia-700/30 shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col justify-center">
-                        <div class="absolute -top-8 -right-8 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
-                            <i class="fa-solid fa-toolbox fa-4x text-fuchsia-400"></i>
+
+                        <!-- Right Column: Stats & Metrics -->
+                        <div class="lg:col-span-1 space-y-6">
+                            <!-- Development Stats -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="stats">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-bar text-green-400"></i>
+                                    Dev Stats 2024
+                                </h4>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="metric-card">
+                                        <div class="text-2xl font-bold text-blue-400 mb-1">50+</div>
+                                        <p class="text-sm text-slate-400">Repositorios</p>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="text-2xl font-bold text-green-400 mb-1">500+</div>
+                                        <p class="text-sm text-slate-400">Commits</p>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="text-2xl font-bold text-purple-400 mb-1">12</div>
+                                        <p class="text-sm text-slate-400">Proyectos</p>
+                                    </div>
+                                    <div class="metric-card">
+                                        <div class="text-2xl font-bold text-yellow-400 mb-1">8</div>
+                                        <p class="text-sm text-slate-400">Clientes</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Activity -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="activity">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-clock text-cyan-400"></i>
+                                    Actividad Reciente
+                                </h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3 text-sm">
+                                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                        <span class="text-slate-300">Deployed Impulso-IA v2.1</span>
+                                        <span class="text-slate-500 text-xs ml-auto">2h ago</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-sm">
+                                        <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                                        <span class="text-slate-300">Updated portfolio design</span>
+                                        <span class="text-slate-500 text-xs ml-auto">5h ago</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-sm">
+                                        <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                                        <span class="text-slate-300">Completed React Native course</span>
+                                        <span class="text-slate-500 text-xs ml-auto">1d ago</span>
+                                    </div>
+                                    <div class="flex items-center gap-3 text-sm">
+                                        <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                        <span class="text-slate-300">Started new client project</span>
+                                        <span class="text-slate-500 text-xs ml-auto">3d ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Current Learning -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="learning">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-book text-pink-400"></i>
+                                    Aprendiendo Ahora
+                                </h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-300 text-sm">Ethical Hacking</span>
+                                        <span class="text-green-400 text-xs">En progreso</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-300 text-sm">Pentesting</span>
+                                        <span class="text-yellow-400 text-xs">Intermedio</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-slate-300 text-sm">Cloud Security</span>
+                                        <span class="text-blue-400 text-xs">Básico</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Certifications -->
+                            <div class="dashboard-card rounded-2xl p-6 draggable drop-zone" draggable="true" data-card-id="certifications">
+                                <div class="drag-handle">
+                                    <i class="fa-solid fa-grip-dots-vertical"></i>
+                                </div>
+                                <h4 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                                    <i class="fa-solid fa-certificate text-yellow-400"></i>
+                                    Certificaciones
+                                </h4>
+                                <div class="space-y-3">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
+                                            <i class="fa-brands fa-java text-red-400 text-xs"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="text-white text-sm font-medium">Oracle Java SE</div>
+                                            <div class="text-slate-400 text-xs">2024</div>
+                                        </div>
+                                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
+                                            <i class="fa-solid fa-shield-halved text-blue-400 text-xs"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="text-white text-sm font-medium">CompTIA Security+</div>
+                                            <div class="text-slate-400 text-xs">En progreso</div>
+                                        </div>
+                                        <div class="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-gray-500/20 flex items-center justify-center">
+                                            <i class="fa-brands fa-linux text-gray-300 text-xs"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="text-white text-sm font-medium">Linux Professional</div>
+                                            <div class="text-slate-400 text-xs">2023</div>
+                                        </div>
+                                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                    </div>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center">
+                                            <i class="fa-solid fa-fire text-orange-400 text-xs"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <div class="text-white text-sm font-medium">Firebase Developer</div>
+                                            <div class="text-slate-400 text-xs">2024</div>
+                                        </div>
+                                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2 relative z-10">Herramientas y Otros</h3>
-                        <ul class="text-slate-300 relative z-10 space-y-1">
-                            <li><i class="fa-brands fa-git-alt text-orange-400 mr-2"></i>Git, GitHub</li>
-                            <li><i class="fa-brands fa-docker text-blue-400 mr-2"></i>Docker</li>
-                            <li><i class="fa-solid fa-rocket text-sky-400 mr-2"></i>CI/CD</li>
-                            <li><i class="fa-solid fa-users text-green-400 mr-2"></i>Scrum</li>
-                            <li><i class="fa-solid fa-link text-purple-400 mr-2"></i>REST APIs, GraphQL</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -402,11 +1051,104 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800">
-        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
-            <p>&copy; 2025 Brayam Chavarro. Todos los derechos reservados.</p>
-            <p class="text-sm mt-2">Portafolio de Ingeniería de Software.</p>
+    <!-- Enhanced Footer -->
+    <footer class="bg-gradient-to-t from-slate-900/50 to-slate-800/30 border-t border-slate-700">
+        <div class="container mx-auto px-6 py-12">
+            <!-- Top Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- About Section -->
+                <div class="text-center md:text-left">
+                    <h3 class="text-xl font-bold text-white mb-4">Brayam Chavarro</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Estudiante de Ingeniería de Software especializado en desarrollo web y aplicaciones. 
+                        Creando soluciones tecnológicas innovadoras desde Colombia 🇨🇴
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="text-center">
+                    <h3 class="text-xl font-bold text-white mb-4">Enlaces Rápidos</h3>
+                    <div class="space-y-2">
+                        <a href="#proyectos" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm">Proyectos</a>
+                        <a href="#sobre-mi-habilidades" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm">Sobre mí</a>
+                        <a href="#contacto" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm">Contacto</a>
+                        <a href="mailto:contacto@brayamchavarro.com" class="block text-slate-400 hover:text-sky-400 transition-colors text-sm">Email</a>
+                    </div>
+                </div>
+                
+                <!-- Contact Info -->
+                <div class="text-center md:text-right">
+                    <h3 class="text-xl font-bold text-white mb-4">Contacto</h3>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-slate-400">
+                            <i class="fa-solid fa-envelope text-sky-400 mr-2"></i>
+                            contacto@brayamchavarro.com
+                        </p>
+                        <p class="text-slate-400">
+                            <i class="fa-solid fa-map-marker-alt text-sky-400 mr-2"></i>
+                            Colombia
+                        </p>
+                        <p class="text-slate-400">
+                            <i class="fa-solid fa-code text-sky-400 mr-2"></i>
+                            Desarrollo Web & Software
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Media Section -->
+            <div class="border-t border-slate-700 pt-8 mb-8">
+                <div class="text-center">
+                    <h3 class="text-lg font-semibold text-white mb-4">Conéctate conmigo</h3>
+                    <div class="flex justify-center items-center gap-4">
+                        <a href="https://github.com/brayamchavarro" target="_blank" 
+                           class="group flex items-center justify-center w-12 h-12 rounded-full bg-slate-800 border border-slate-600 hover:border-sky-400 hover:bg-sky-400/10 transition-all duration-300 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-slate-400 group-hover:text-sky-400 transition-colors" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/in/brayamchavarro" target="_blank" 
+                           class="group flex items-center justify-center w-12 h-12 rounded-full bg-slate-800 border border-slate-600 hover:border-blue-400 hover:bg-blue-400/10 transition-all duration-300 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-slate-400 group-hover:text-blue-400 transition-colors" viewBox="0 0 16 16">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/brayamchavarro" target="_blank" 
+                           class="group flex items-center justify-center w-12 h-12 rounded-full bg-slate-800 border border-slate-600 hover:border-gray-400 hover:bg-gray-400/10 transition-all duration-300 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-slate-400 group-hover:text-gray-400 transition-colors" viewBox="0 0 16 16">
+                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.6.75zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/brayamchavarro" target="_blank" 
+                           class="group flex items-center justify-center w-12 h-12 rounded-full bg-slate-800 border border-slate-600 hover:border-pink-400 hover:bg-pink-400/10 transition-all duration-300 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-slate-400 group-hover:text-pink-400 transition-colors" viewBox="0 0 16 16">
+                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.282.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.232s.008-2.389.046-3.232c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.843-.038 1.096-.047 3.232-.047h.001zm4.908 1.354a1.164 1.164 0 1 0-2.328 0 1.164 1.164 0 0 0 2.328 0zM8 4.405a3.595 3.595 0 1 0 0 7.19 3.595 3.595 0 0 0 0-7.19zm0 5.795a2.2 2.2 0 1 1 0-4.4 2.2 2.2 0 0 1 0 4.4z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:contacto@brayamchavarro.com" 
+                           class="group flex items-center justify-center w-12 h-12 rounded-full bg-slate-800 border border-slate-600 hover:border-emerald-400 hover:bg-emerald-400/10 transition-all duration-300 hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-slate-400 group-hover:text-emerald-400 transition-colors" viewBox="0 0 16 16">
+                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.385L8 9.583l-1.326-.795-5.64 3.385A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Section -->
+            <div class="border-t border-slate-700 pt-6 text-center">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-slate-500 text-sm">
+                        &copy; 2025 Brayam Chavarro. Todos los derechos reservados.
+                    </p>
+                    <p class="text-slate-500 text-sm">
+                        Hecho con <span class="text-red-400">❤️</span> en Colombia
+                    </p>
+                    <p class="text-slate-500 text-sm">
+                        Portafolio de Ingeniería de Software
+                    </p>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -610,82 +1352,242 @@
             runHeaderTypewriter();
         }
 
-        // --- Animación consola para Sobre mí en Bento Grid ---
-        const consoleTypewriterBento = document.getElementById('console-typewriter-bento');
-        if (consoleTypewriterBento) {
-            const lines = [
-                'Hola, soy Brayam Chavarro.',
-                'Estudiante de Ingeniería de Software.',
-                'Apasionado por la tecnología, la innovación y el desarrollo de soluciones que impactan positivamente.',
-                'Me especializo en desarrollo web y de aplicaciones, combinando creatividad y lógica.',
-                'Siempre busco aprender nuevas tecnologías y enfrentar desafíos para crecer profesionalmente.'
-            ];
-            const typingSpeed = 38;
-            const linePause = 900;
-            let currentLine = 0;
-            let currentChar = 0;
-            let output = '';
-            let typing;
 
-            function typeLine() {
-                if (currentLine < lines.length) {
-                    if (currentChar < lines[currentLine].length) {
-                        output += lines[currentLine][currentChar];
-                        consoleTypewriterBento.innerHTML = `$ ${output}<span class="animate-cursor">|</span>`;
-                        currentChar++;
-                        typing = setTimeout(typeLine, typingSpeed);
-                    } else {
-                        output += '\n$ ';
-                        currentChar = 0;
-                        currentLine++;
-                        typing = setTimeout(typeLine, linePause);
-                    }
+
+        // ===== DASHBOARD ANIMATIONS =====
+        
+        // Animate skill badges on page load
+        function initializeDashboard() {
+            // Animate skill badges with stagger effect
+            setTimeout(() => {
+                const skillBadges = document.querySelectorAll('.skill-badge');
+                skillBadges.forEach((badge, index) => {
+                    badge.style.opacity = '0';
+                    badge.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        badge.style.transition = 'all 0.5s ease';
+                        badge.style.opacity = '1';
+                        badge.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }, 500);
+        }
+
+        // Counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
                 } else {
-                    // Remove cursor after finish
-                    consoleTypewriterBento.innerHTML = `$ ${output}`;
+                    element.textContent = Math.floor(start) + '+';
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for counter animations
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const text = counter.textContent.replace('+', '');
+                    const target = parseInt(text);
+                    if (!isNaN(target)) {
+                        animateCounter(counter, target);
+                    }
+                    observer.unobserve(counter);
+                }
+            });
+        }, observerOptions);
+
+        // ===== DRAG AND DROP FUNCTIONALITY =====
+        
+        let draggedElement = null;
+        let draggedFromContainer = null;
+
+        // Initialize drag and drop
+        function initializeDragAndDrop() {
+            const draggableCards = document.querySelectorAll('.draggable');
+            
+            draggableCards.forEach(card => {
+                // Drag start
+                card.addEventListener('dragstart', (e) => {
+                    draggedElement = e.target;
+                    draggedFromContainer = e.target.parentNode;
+                    e.target.classList.add('dragging');
+                    
+                    // Set drag image (optional)
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/html', e.target.outerHTML);
+                });
+
+                // Drag end
+                card.addEventListener('dragend', (e) => {
+                    e.target.classList.remove('dragging');
+                    // Remove drag-over class from all cards
+                    draggableCards.forEach(c => c.classList.remove('drag-over'));
+                    draggedElement = null;
+                    draggedFromContainer = null;
+                });
+
+                // Drag over
+                card.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'move';
+                    
+                    // Find the closest draggable card (in case hovering over child elements)
+                    const targetCard = e.target.closest('.draggable');
+                    if (targetCard && targetCard !== draggedElement) {
+                        // Remove drag-over from all cards first
+                        draggableCards.forEach(c => c.classList.remove('drag-over'));
+                        // Add to the target card
+                        targetCard.classList.add('drag-over');
+                    }
+                });
+
+                // Drag leave
+                card.addEventListener('dragleave', (e) => {
+                    // Only remove if we're actually leaving the card (not moving to a child)
+                    if (!card.contains(e.relatedTarget)) {
+                        card.classList.remove('drag-over');
+                    }
+                });
+
+                // Drop
+                card.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    
+                    // Find the closest draggable card
+                    const targetCard = e.target.closest('.draggable');
+                    if (targetCard) {
+                        targetCard.classList.remove('drag-over');
+                        
+                        if (targetCard !== draggedElement && draggedElement) {
+                            // Insert the dragged element before the target
+                            insertElementBefore(draggedElement, targetCard);
+                            
+                            // Save the new layout
+                            saveDashboardLayout();
+                        }
+                    }
+                });
+            });
+        }
+
+        // Insert element before target (pushing target and following elements down)
+        function insertElementBefore(draggedElement, targetElement) {
+            const targetParent = targetElement.parentNode;
+            
+            // Insert the dragged element before the target element
+            targetParent.insertBefore(draggedElement, targetElement);
+            
+            // This automatically pushes the target and all following elements down
+        }
+
+        // Save dashboard layout to localStorage
+        function saveDashboardLayout() {
+            const cards = document.querySelectorAll('.draggable');
+            const layout = [];
+            
+            cards.forEach((card, index) => {
+                layout.push({
+                    id: card.dataset.cardId,
+                    position: index,
+                    parentColumn: getColumnIndex(card.parentNode)
+                });
+            });
+            
+            localStorage.setItem('dashboardLayout', JSON.stringify(layout));
+            
+            // Show brief confirmation
+            showNotification('Cuadro reposicionado ✨');
+        }
+
+        // Show notification
+        function showNotification(message) {
+            // Remove existing notification if any
+            const existing = document.querySelector('.layout-notification');
+            if (existing) existing.remove();
+            
+            const notification = document.createElement('div');
+            notification.className = 'layout-notification fixed top-24 right-6 bg-green-600 text-white px-4 py-2 rounded-lg text-sm z-50 opacity-0 transition-all duration-300';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(-20px)';
+                setTimeout(() => notification.remove(), 300);
+            }, 2000);
+        }
+
+        // Get column index helper
+        function getColumnIndex(container) {
+            const columns = container.parentNode.children;
+            for (let i = 0; i < columns.length; i++) {
+                if (columns[i] === container) {
+                    return i;
                 }
             }
-            setTimeout(typeLine, 600);
+            return 0;
         }
 
-        // Slider de proyectos con animación lateral
-        const track = document.getElementById('projects-track');
-        const prevBtn = document.getElementById('prev-project');
-        const nextBtn = document.getElementById('next-project');
-        const totalProjects = 3;
-        let current = 0;
+        // Load saved dashboard layout
+        function loadDashboardLayout() {
+            const savedLayout = localStorage.getItem('dashboardLayout');
+            if (!savedLayout) return;
 
-        function updateSlider() {
-            track.style.transform = `translateX(-${current * 100}%)`;
+            try {
+                const layout = JSON.parse(savedLayout);
+                // Implementation for restoring layout would go here
+                // For now, we'll keep the default layout
+            } catch (e) {
+                console.log('Could not load saved layout');
+            }
         }
 
-        nextBtn.addEventListener('click', () => {
-            current = (current + 1) % totalProjects;
-            updateSlider();
-        });
-        prevBtn.addEventListener('click', () => {
-            current = (current - 1 + totalProjects) % totalProjects;
-            updateSlider();
-        });
+        // Reset dashboard to default layout
+        function resetDashboardLayout() {
+            localStorage.removeItem('dashboardLayout');
+            showNotification('Layout restablecido 🔄');
+            setTimeout(() => {
+                location.reload(); // Simple way to reset to original layout
+            }, 1000);
+        }
 
-        // Parallax y animación llamativa para la imagen de Impulso-IA
-        const parallaxImg = document.getElementById('parallax-impulso');
-        if (parallaxImg) {
-            parallaxImg.parentElement.addEventListener('mousemove', (e) => {
-                const rect = parallaxImg.parentElement.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
-                const scale = 1.12 + Math.abs(x * y) * 0.08;
-                const rotateX = y * 12;
-                const rotateY = x * 12;
-                parallaxImg.style.transform = `scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                parallaxImg.style.boxShadow = `${-x*30}px ${-y*30}px 60px 0 rgba(56,189,248,0.15)`;
+        // Initialize dashboard on page load
+        window.addEventListener('load', () => {
+            // Initialize skill badge animations
+            initializeDashboard();
+            
+            // Initialize drag and drop
+            initializeDragAndDrop();
+            
+            // Load saved layout
+            loadDashboardLayout();
+            
+            // Observe all counter elements
+            const counters = document.querySelectorAll('.metric-card .text-2xl');
+            counters.forEach(counter => {
+                observer.observe(counter);
             });
-            parallaxImg.parentElement.addEventListener('mouseleave', () => {
-                parallaxImg.style.transform = '';
-                parallaxImg.style.boxShadow = '';
-            });
-        }
+        });
 
     </script>
 </body>
